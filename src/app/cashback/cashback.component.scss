@@ -1,0 +1,45 @@
+@import '../../global.scss';
+
+.cashback {
+  &__wallet {
+    margin-top: 30px;
+    text-align: center;
+
+    &-button {
+      background: center/contain no-repeat transparent;
+      display: block;
+      width: 100%;
+      height: 54px;
+      margin: 0 auto;
+      cursor: pointer;
+      padding: 0;
+
+      &--google-en {
+        background-image: url('../../assets/icons/google_wallet_EN.svg');
+      }
+
+      &--google-es {
+        background-image: url('../../assets/icons/google_wallet_ES.svg');
+      }
+
+      &--apple-en {
+        background-image: url('../../assets/icons/apple_wallet_EN.svg');
+      }
+
+      &--apple-es {
+        background-image: url('../../assets/icons/apple_wallet_ES.svg');
+      }
+    }
+  }
+}
+
+.rewards {
+  &__header {
+    color: $secondary-color;
+  }
+
+  &__maxvalue {
+    font-weight: 600;
+    color: $tertiary-color;
+  }
+}

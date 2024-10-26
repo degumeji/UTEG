@@ -1,0 +1,440 @@
+<div class="row">
+  <div class="col-xl-3">
+    <!-- Settings -->
+    <div class="card card-default">
+      <div class="card-header">
+        <h2>{{ 'profile_view.setting' | translate }}</h2>
+      </div>
+
+      <div class="card-body pt-0">
+
+        <ul class="nav nav-settings">
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" (click)="showProfileView()">
+              <i class="mdi mdi-account-outline mr-1"></i> {{ 'profile_view.title' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" routerLink="/loyalty/history">
+              <i class="mdi mdi-history mr-1"></i> {{ 'menu_items.history' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" routerLink="/loyalty/check-balance">
+              <i class="mdi mdi-currency-usd mr-1"></i> {{ 'menu_items.check-balance' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" (click)="showPasswordView()">
+              <i class="mdi mdi-key mr-1"></i> {{ 'profile_view.update_password' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" (click)="showTermsAndConditions()">
+              <i class="mdi mdi-file-check-outline mr-1"></i> {{ 'profile_view.terms_and_conditions' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" (click)="showEditPhoneView()">
+              <i
+                class="mdi mdi-cellphone mr-1"></i> {{ 'profile_view.phone_number_view.title' | translate }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-black" href="javascript:void(0);" (click)="showNotificationsView()">
+              <i class="mdi mdi-bell-outline mr-1"></i> {{ 'profile_view.notification' | translate }}
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="col-xl-9">
+    <div class="card card-default" *ngIf="showProfile">
+      <div class="card-header">
+        <h2>{{ 'profile_view.title' | translate }}</h2>
+      </div>
+
+      <div class="card-body">
+        <form>
+          <div class="row mb-2">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="text-black" for="firstname">{{ 'firstname' | translate }}</label>
+                <input type="text" class="form-control" name="firstname" [(ngModel)]="firstname">
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="text-black" for="lastname">{{ 'lastname' | translate }}</label>
+                <input type="text" class="form-control" name="lastname" [(ngModel)]="lastname">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="text-black" for="email">{{ 'email' | translate }}</label>
+            <input type="email" class="form-control" name="email" (input)="onEmailChange($event)" [(ngModel)]="email">
+            <div>
+              <mat-error class="my-1" *ngIf="showInvalidEmailAlert">
+                {{ 'view_alerts.email_exists'  | translate }}
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <button class="btn btn-link card__button-link" type="button" (click)="showPasswordView()">
+              {{ 'profile_view.update_password' | translate }}
+            </button>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="text-black" for="phone">{{ 'phone' | translate }}</label>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="originalphone" disabled>
+            <button class="btn btn-link card__button-link" type="button"
+                    data-bs-toggle="modal" data-bs-target="#smsValidationModal" *ngIf="!isVerifiedPhoneNumber">
+              {{ 'profile_view.phone_number_view.btn_validate' | translate }}
+            </button>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="text-black" for="birthday">{{ 'birthday' | translate }}</label>
+            <input type="text" class="form-control" name="birthday" placeholder="{{ getFormatDate(birthday) }}"
+                   disabled>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="text-black" for="gender">{{ 'gender' | translate }}</label>
+            <input type="text" class="form-control" name="gender" [(ngModel)]="gender" disabled>
+          </div>
+
+          <div class="form-group mb-4">
+            <button class="btn btn-link card__button-link" type="button" (click)="onDeleteAccountSubmit()">
+              {{ 'profile_view.delete_account' | translate }}
+            </button>
+          </div>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill text-black"
+                    (click)="updateProfile()">{{ 'save' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card card-default" *ngIf="editPassword">
+      <div class="card-header">
+        <h2>{{ 'profile_view.update_password' | translate }}</h2>
+      </div>
+
+      <div class="card-body">
+        <form>
+          <div class="form-group mb-4">
+            <label class="text-black" for="psw">{{ 'profile_view.current_password' | translate }}</label>
+            <div>
+              <div class="gap-2 input-pwd-wrapper">
+                <input [type]="hideUpdatePswCurrent ? 'password' : 'text'" class="form-control" name="psw"
+                       [(ngModel)]="currentPassword">
+                <mat-icon class="cursor-pointer position-relative text-black" matSuffix
+                          (click)="hideUpdatePswCurrent = !hideUpdatePswCurrent">
+                  {{ hideUpdatePswCurrent ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="text-black" for="psw">{{ 'updatepass_msg' | translate }}</label>
+            <div>
+              <div class="gap-2 input-pwd-wrapper">
+                <input [type]="hideUpdatePswNew ? 'password' : 'text'" class="form-control" name="psw"
+                       [(ngModel)]="password" (input)="onPasswordChange($event)" required>
+                <mat-icon class="cursor-pointer position-relative text-black" matSuffix
+                          (click)="hideUpdatePswNew = !hideUpdatePswNew">
+                  {{ hideUpdatePswNew ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+              </div>
+            </div>
+            <span class="d-block text-black mt-1" *ngIf="alertDigits">{{ alertDigits }}</span>
+            <span class="d-block text-black mt-1" *ngIf="alertLowerCase">{{ alertLowerCase }}</span>
+            <span class="d-block text-black mt-1" *ngIf="alertUpperCase">{{ alertUpperCase }}</span>
+            <span class="d-block text-black mt-1" *ngIf="alertNumeric">{{ alertNumeric }}</span>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="text-black" for="psw">{{ 'confirm_password' | translate }}</label>
+            <div>
+              <div class="gap-2 input-pwd-wrapper">
+                <input [type]="hideUpdatePswConfirm ? 'password' : 'text'" class="form-control" name="psw"
+                       [(ngModel)]="confirmPass" (input)="onPasswordConfirmChange($event)" required>
+                <mat-icon class="cursor-pointer position-relative text-black" matSuffix
+                          (click)="hideUpdatePswConfirm = !hideUpdatePswConfirm">
+                  {{ hideUpdatePswConfirm ? 'visibility_off' : 'visibility' }}
+                </mat-icon>
+              </div>
+            </div>
+            <span class="d-block text-black mt-1" *ngIf="alertConfirm">{{ alertConfirm }}</span>
+          </div>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill text-black"
+                    (click)="updatePassword()">{{ 'save' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card card-default" *ngIf="editPhoneNumber">
+      <div class="card-header">
+        <h2>{{ 'profile_view.phone_number_view.title' | translate }}</h2>
+      </div>
+
+      <div class="card-body">
+        <form>
+          <div class="form-group mb-4">
+            <div class="input-group mb-3">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">+ ( {{ phoneNumberCode }} )
+              </button>
+              <ul class="dropdown-menu">
+                <input type="text" placeholder="{{'search' | translate}}" id="myInput" (keyup)="filterFunction($event)"
+                       style="width: 100%;">
+                <li><a class="dropdown-item" href="javascript:void(0);" (click)="onCountryCodeSelected(country)"
+                       *ngFor="let country of filteredCountries">+ ( {{ country.phone_code }} ) {{ country.name }}</a>
+                </li>
+              </ul>
+              <input type="text" class="form-control" name="newPhone" [(ngModel)]="newPhone"
+                     (input)="onPhoneNumberChange($event)">
+            </div>
+            <span class="d-block text-black mt-1"
+                  *ngIf="!isValidPhoneNumber && showInvalidPhoneNumberAlert">{{ 'view_alerts.phone_format' | translate }}</span>
+            <span class="d-block text-black mt-1"
+                  *ngIf="isPhoneNumberExists">{{ 'view_alerts.invalid_phone' | translate }}</span>
+            <span class="d-block text-black mt-1" *ngIf="alertPhoneNumber">{{ alertPhoneNumber }}</span>
+          </div>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill text-black"
+                    (click)="updatePhoneNumber()"
+                    [disabled]="!isValidPhoneNumber || isPhoneNumberExists">{{ 'save' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card card-default" *ngIf="showNotifications">
+      <div class="card-header">
+        <h2>{{ 'profile_view.notification' | translate }}</h2>
+      </div>
+
+      <div class="card-body">
+        <form>
+          <div class="form-group mb-4">
+            <mat-slide-toggle
+              [checked]="switchChecked"
+              (change)="onCheckedMsg($event)">
+              {{ 'profile_view.msg' | translate }}
+            </mat-slide-toggle>
+          </div>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill text-black"
+                    (click)="updateProfile()">{{ 'save' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+      <p style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+  </div>
+</div>
+
+<div class="modal fade" id="smsValidationModal" tabindex="-1" aria-labelledby="smsValidationModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5"
+            id="smsValidationModalLabel">{{ 'profile_view.phone_number_view.validation_msg' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form>
+            <div class="mb-3">
+              <label for="digits"
+                     class="col-form-label">{{ 'profile_view.phone_number_view.validation_msg1' | translate }}</label>
+              <input type="text" class="form-control" name="digits" [(ngModel)]="digitos">
+            </div>
+            <button class="btn btn-link card__button-link"
+                    (click)="sendActivationSMS()">{{ 'profile_view.phone_number_view.resend' | translate }}
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-secondary"
+                (click)="onValidateCode()">{{ 'send' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateEmailModal" tabindex="-1" aria-labelledby="updateEmailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="updateEmailModalLabel">{{ 'profile_view.current_password' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form>
+            <div class="mb-3">
+              <label for="currentPassword"
+                     class="col-form-label">{{ 'profile_view.currentpass_msg' | translate }}</label>
+              <div>
+                <div class="gap-2 input-pwd-wrapper">
+                  <input [type]="hidePsw ? 'password' : 'text'" class="form-control" name="currentPassword"
+                         [(ngModel)]="currentPassword">
+                  <mat-icon class="cursor-pointer position-relative" matSuffix
+                            (click)="hidePsw = !hidePsw">
+                    {{ hidePsw ? 'visibility_off' : 'visibility' }}
+                  </mat-icon>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-secondary"
+                (click)="updateEmail()">{{ 'send' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="checkEmployeeModal" tabindex="-1" aria-labelledby="updateEmailModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="checkEmployeeModalLabel">{{ 'profile_view.check_employee' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <form>
+            <div class="mb-3">
+              <label for="employeeCedula"
+                     class="col-form-label">{{ 'profile_view.check_employee_msg' | translate }}</label>
+              <input class="form-control" name="employeeCedula" [value]="idnumber" (keyup)="onIdNumberChange($event)">
+            </div>
+          </form>
+        </div>
+        <div class="errors-container">
+          <mat-error class="mt-1 mb-1"
+                     *ngIf="isIdNumberExists">{{ 'view_alerts.frc_code_exists' | translate }}
+          </mat-error>
+          <mat-error class="my-1" *ngIf="isInvalidIdNumber">{{ 'view_alerts.frc_code_invalid' | translate }}</mat-error>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onCloseCheckEmployee()">Close
+        </button>
+        <button type="button" class="btn btn-outline-secondary"
+                (click)="checkEmployee()">{{ 'send' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5"
+            id="deleteAccountModalLabel">{{ 'profile_view.delete_account_msg' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <p>{{ 'profile_view.delete_account_msg' | translate }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="genericModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="genericModalLabel">{{ 'menu_items.profile' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <p>{{ genericMsg }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="changePasswordModalLabel">{{ 'menu_items.profile' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <p>{{ genericMsg }}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onLogout()" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade termsAndConditions" id="termsAndConditions" tabindex="-1" aria-labelledby="termsAndConditions"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">{{ 'profile_view.terms_and_conditions' | translate }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p [innerHTML]="termsAndConditions.content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="auth">
+  <div class="logo-row">
+    <div class="col-sm-12 logo-position">
+      <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+      />
+    </div>
+  </div>
+  <div class="auth__card">
+    <form [formGroup]="loginForm">
+      <div class="w-100">
+        <div>
+          <div class="col-sm-12 auth__login">
+            <mat-form-field class="w-100">
+              <mat-label>{{ 'email' | translate }}</mat-label>
+              <input type="text" matInput formControlName="email" placeholder="" name="email">
+              <mat-error *ngIf="checkError('email', 'required')">
+                {{ 'forms_errors.email.required' | translate }}
+              </mat-error>
+              <mat-error *ngIf="checkError('email', 'email')">
+                {{ 'forms_errors.email.email' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+              <mat-label>{{ 'password' | translate }}</mat-label>
+              <input [type]="hidePsw ? 'password' : 'text'" matInput formControlName="password" placeholder=""
+                     name="password">
+              <mat-icon class="cursor-pointer position-relative" matSuffix
+                        (click)="hidePsw = !hidePsw">
+                {{ hidePsw ? 'visibility_off' : 'visibility' }}
+              </mat-icon>
+              <mat-error *ngIf="checkError('password', 'required')">
+                {{ 'forms_errors.password.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+
+            <div class="auth-buttons">
+              <div class="col-sm-12 px-0 my-3">
+                <button class="btn-uteg w-100"
+                        (click)="onLogin()">
+                  {{ 'login_btn' | translate }}
+                </button>
+              </div>
+
+              <!--div class="col-sm-12 px-0 my-3">
+                <div class="w-100 d-flex">
+                  <div class="col-6 px-0 d-flex align-items-center justify-content-center">
+                    <p class="my-0 fs-6" style="overflow-wrap: break-word;">
+                      {{ 'register_sub_ttl' | translate }}
+                    </p>
+                  </div>
+                  <div class="col-6 px-0">
+                    <button class="btn-uteg-secondary w-100"
+                            (click)="goToRegister()">
+                      {{ 'login_sttl2' | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div-->
+              
+            </div>
+
+            <!--div class="mt-4" id="forgot-password">
+              <div class="col-sm-12">
+                <a class="auth__reset-pass" routerLink="/resetpass">{{ 'login_msg' | translate }}</a>
+              </div>
+            </div-->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+    style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>
+
+<app-modal id="modal-generic">
+  <div class="card-body">
+    <p>{{ genericMsg }}</p>
+  </div>
+  <button class="app-modal-btn" (click)="closeModal('modal-generic');">{{ 'close_btn' | translate }}</button>
+</app-modal>

@@ -1,0 +1,45 @@
+<div class="auth">
+  <div class="logo-row">
+    <div class="col-sm-12 logo-position">
+      <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+      />
+    </div>
+  </div>
+  <div class="auth__card auth__login" *ngIf="viewStep1">
+    <form>
+      <h6 class="auth__title">{{ 'transfer_view.opt1' | translate }}</h6>
+      <div class="auth-buttons">
+        <div class="col-sm-12">
+          <a class="mdl-button mdl-js-button text-center text-uppercase"
+             routerLink="/register" routerLinkActive="active">{{ 'login_sttl2' | translate }}</a>
+          <button class="mdl-button mdl-js-button mdl-button--raised" routerLink="/login">
+            {{ 'login_btn' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep2">
+    <form>
+      <h6 class="auth__title">{{ 'transfer_view.opt2' | translate }}</h6>
+      <div class="auth-buttons">
+        <div class="col-sm-12 mt-4">
+          <button class="auth__continue" (click)="transferEgift()">{{ 'transfer_view.btn1' | translate }}</button>
+          <a class="mdl-button mdl-js-button text-center text-uppercase" href="javascript:void(0);"
+             (click)="goToHome()">{{ 'view_alerts.go_home' | translate }}</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep3">
+    <form>
+      <h6 class="auth__title">{{ finalStepTitle }}</h6>
+      <button class="auth__continue" routerLink="/loyalty/history">{{ 'transfer_view.btn2' | translate }}</button>
+    </form>
+  </div>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+    style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>

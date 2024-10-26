@@ -1,0 +1,52 @@
+<div class="row no-gutters m-0">
+  <div class="launcher__main-content">
+    <div class="auth__form">
+      <mat-sidenav-container>
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z4">
+          <div class="d-flex justify-content-end topbar__right w-100">
+            <div *ngIf="sidenav.opened">
+              <button mat-icon-button class="text-black" (click)="sidenav.toggle()">
+                <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="w-100 px-2">
+            <div *ngFor="let menuItem of menuItems;">
+              <button *ngIf="menuItem.name !== 'home'"
+                      mat-button class="menu-button text-start h-100 p-0"
+                      (click)="displayComponent(menuItem.path)"
+                      [ngClass]="{
+                        'menu-button-active': menuItem.subPaths.indexOf(router.url) >= 0
+                      }">
+                <i *ngIf="menuItem.name !== 'locations'" [ngClass]="['mdi', 'mdi-' + menuItem.icon]"></i>
+                <mat-icon *ngIf="menuItem.name === 'locations'" [svgIcon]="menuItem.icon"></mat-icon>
+                <span>{{ "menu_items." + menuItem.name | translate }}</span>
+              </button>
+            </div>
+          </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <!--mat-toolbar class="no-bg">
+            <div class="topbar__left">
+              <div>
+                <button mat-icon-button (click)="sidenav.toggle()" class="topbar__left__burger">
+                  <mat-icon *ngIf="!sidenav.opened" class="topbar__left__burger-icon">menu</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="topbar__center">
+            </div>
+            <div class="topbar__right">
+            </div>
+          </!-mat-toolbar-->
+          <div class="no-bg py-0">
+            <router-outlet></router-outlet>
+          </div>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </div>
+  <div class="launcher__background">
+    <div class="auth__background"></div>
+  </div>
+</div>

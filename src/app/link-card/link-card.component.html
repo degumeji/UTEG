@@ -1,0 +1,38 @@
+<div class="link-card pad-1">
+  <div class="link-card__content">
+    <div class="link-card__content__title">
+      Already a part of our rewards program?
+    </div>
+    <div class="link-card__content__description">
+      <span>Enter the phone number you use to check in at your favorite M Hospitality! location in order to transfer your balance to your new account.</span>
+    </div>
+
+    <div class="link-card__content__form">
+
+      <mat-form-field appearance="outline" class="link-card__content__form__mat-field">
+        <mat-label>Phone number</mat-label>
+        <input type="text" matInput [formControl]="cardNumber"
+               placeholder="Ex. 123456789">
+        <mat-error *ngIf="cardNumber.invalid">
+          {{getErrorMessage()}}
+        </mat-error>
+      </mat-form-field>
+
+
+      <div class="link-card__content__form__btn" *ngIf="!isLoading">
+        <app-button (onClick)="onAddCard()" [eventName]="'onAddCard'" [backgroundColor]="'#F97F90'" [iconType]="'text'"
+                    [text]="'Transfer Points'"></app-button>
+      </div>
+      <!-- <div>
+         <button (click)="testCall1()">Llamado 1</button>
+       </div>-->
+      <div class="link-card__content__form__loader" *ngIf="isLoading">
+        <mat-spinner class="link-card__content__form__loader__mat-spinner"
+                     style="height: 50px; width: 50px;"></mat-spinner>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

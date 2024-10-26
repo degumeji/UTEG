@@ -1,0 +1,45 @@
+@import '../../global.scss';
+
+.rewards {
+  &__tier-image {
+    width: 100%;
+    }
+  .card-body {
+    padding: 1rem;
+    @media #{$medium-up} {
+      padding: 1.875rem;
+      }
+    }
+  :host ::ng-deep &__tier {
+    &-mini strong {
+      color: $tier-mini;
+      }
+    &-genius strong {
+      color: $tier-genius;
+      }
+    &-master strong {
+      color: $tier-master;
+      }
+    }
+  &__list {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 1% 5%;
+    border-radius: 6px;
+    &__title {
+      gap: 10px;
+      align-items: center;
+      &-name {
+        color: $tertiary-color;
+        margin: 0;
+        }
+      &-available {
+        padding: 4px 10px;
+        background-color: $secondary-color;
+        color: $primary-color;
+        font-weight: bold;
+        border-radius: 6px;
+        white-space: nowrap;
+        }
+      }
+    }
+  }

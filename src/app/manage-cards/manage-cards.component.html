@@ -1,0 +1,160 @@
+<div class="row">
+  <div class="col-xl-6 m-auto">
+
+    <!-- GIFT CARD -->
+    <div class="card card-default" *ngIf="!showAddSTCardView">
+      <div class="col">
+        <button mat-mini-fab color="primary" class="round-0"
+                class="text-black no-bg" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <div class="card-header py-2">
+        <h2>{{ 'prepaid_view.addcard_view_title' | translate }}</h2>
+      </div>
+
+      <div class="card-body pt-0">
+        <div>
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action"
+                    *ngFor="let item of ccSTList; let i = index">{{ item.card.number }}
+            </button>
+            <button type="button" class="list-group-item list-group-item-action"
+                    *ngFor="let item of cardsWithPinList; let i = index">{{ item.card.number }}
+            </button>
+          </div>
+
+          <div class="form-group mt-4">
+            <button class="btn btn-outline-secondary"
+                    (click)="onshowAddSTCardView()">{{ 'prepaid_view.btn1' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="card card-default" *ngIf="showAddSTCardView">
+      <div class="card-header pb-0">
+        <h6 class="mt-4">{{ 'prepaid_view.addcard_title1' | translate }}</h6>
+      </div>
+      <div class="card-body pt-0">
+
+        <p class="mt-4">{{ 'prepaid_view.addcard_title2' | translate }}</p>
+
+        <p class="mt-4">
+          {{ 'prepaid_view.addcard_msg' | translate }}
+          <strong class="prepaid__add-card-message">{{ 'prepaid_view.addcard_pin_msg' | translate }}</strong>
+        </p>
+
+        <form>
+          <div class="col-lg-6">
+            <div class="d-flex">
+              <div class="form-group">
+                <input type="phone" class="form-control" name="number" placeholder="CARD NUMBER" [(ngModel)]="number">
+              </div>
+              <div class="form-group">
+                <input type="phone" class="form-control" name="pin" placeholder="PIN" [(ngModel)]="pin">
+              </div>
+            </div>
+          </div>
+
+          <label>{{ 'prepaid_view.addcard_msg1' | translate }}</label>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill"
+                    (click)="addNewCard()"
+                    [disabled]="(number <= 0 || number == undefined)">{{ 'prepaid_view.addcard_btn1' | translate }}
+            </button>
+            <button type="submit" class="btn btn-outline-secondary mb-2 ms-2 btn-pill"
+                    (click)="onHideAddSTCardView()">{{ 'prepaid_view.addcard_btn2' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- CREDIT CARD -->
+    <div class="card card-default mt-4" *ngIf="!showAddCardView">
+      <div class="card-header">
+        <h2>{{ 'cards_view.title' | translate }}</h2>
+      </div>
+
+      <div class="card-body pt-0">
+        <div>
+          <div class="list-group">
+            <div class="d-flex list-group-item list-group-item-action" *ngFor="let item of ccList; let i = index">
+              <p>{{ item.card }}</p>
+              <button class="btn btn-link card__button-link ms-2" (click)="onDeleteCC(item.id)">( {{ 'cards_view.btn_delete' | translate }} )</button>
+            </div>
+          </div>
+
+          <div class="form-group mt-4">
+            <button class="btn btn-outline-secondary" (click)="onshowAddCardView()">{{ 'cards_view.msg' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-default" style="margin-top: 3%;" *ngIf="showAddCardView">
+      <div class="card-header">
+        <h6 class="mt-4">{{ 'egift_view.form.cc_details1' | translate }}</h6>
+      </div>
+      <div class="card-body pt-0">
+
+        <form>
+          <div class="form-group mb-4">
+            <label for="cc_name" style="color: black;">{{ 'egift_view.form.cc_name' | translate }}</label>
+            <input type="text" class="form-control" name="cc_name" [(ngModel)]="cc_name">
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="cc_number" style="color: black;">{{ 'egift_view.form.cc_number' | translate }}</label>
+            <input type="number" class="form-control" name="cc_number" [(ngModel)]="cc_number">
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="cc_cvc" style="color: black;">{{ 'egift_view.form.cc_cvc' | translate }}</label>
+                <input type="text" class="form-control" name="cc_cvc" [(ngModel)]="cc_cvc">
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <label>{{ 'egift_view.form.cc_exp' | translate }}</label>
+              <div class="d-flex">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="MM" name="cc_exp_mm" [(ngModel)]="cc_exp_mm">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="YYYY" name="cc_exp_yy" [(ngModel)]="cc_exp_yy">
+                </div>
+              </div>
+            </div>
+
+            <label class="text-black mt-4 mb-4">{{ 'cards_view.msg2' | translate }}</label>
+
+            <div class="form-group mb-4">
+              <label for="cc_postalcode" style="color: black;">{{ 'egift_view.form.cc_postal_code' | translate }}</label>
+              <input type="text" class="form-control" name="cc_postalcode" [(ngModel)]="cc_postalcode">
+            </div>
+
+            <div class="d-flex justify-content-end mt-6">
+              <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill"
+                      (click)="onSaveCC()">{{ 'prepaid_view.addcard_btn1' | translate }}
+              </button>
+              <button type="submit" class="btn btn-outline-secondary mb-2 ms-2 btn-pill"
+                      (click)="onHideAddCardView()">{{ 'prepaid_view.addcard_btn2' | translate }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- -->
+
+  </div>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+    style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>

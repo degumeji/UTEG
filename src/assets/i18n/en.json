@@ -1,0 +1,459 @@
+{
+  "login": "Log in",
+  "register": "Register",
+  "login_ttl": "Log in",
+  "login_sttl": "Don't have an account? ",
+  "login_sttl2": " sign Up",
+  "login_msg": "Password recovery",
+  "login_msg1": "Click here to reset",
+  "login_btn": "Log in",
+  "register_ttl": "Register",
+  "register_sub_ttl": "Are you new here?",
+  "register_msg": "Please fill the form to register:",
+  "register_btn": "Register",
+  "restorepass_ttl": "Reset Password",
+  "resporepass_to_login": "Sign in",
+  "restorepass_msg": "Please enter your email address. We will send you a code to reset your password:",
+  "restorepass_msg2": "The password has been updated successfully. We have sent you a confirmation email of your password update.",
+  "restorepass_msg3": "Please fill out all required fields.",
+  "updatepass_msg": "Enter the new password",
+  "enter_code_msg": "An email with a verification code was just sent to",
+  "enter_code": "Enter code",
+  "send": "Send",
+  "next": "Next",
+  "save": "Save",
+  "loading": "Loading",
+  "balances": "Balances",
+  "resend": "Resend",
+  "resend_email": "Resend e-mail",
+  "resend_sms": "Resend SMS",
+  "edit_phone": "Edit phone number",
+  "firstname": "First Name",
+  "lastname": "Last Name",
+  "idType": "Identification Type",
+  "idnumber": "Number ID",
+  "idnumber_confirm": "Confirm number ID",
+  "passport_number": "Foreigner",
+  "idlength": "The id does not have ten digits",
+  "idregion": "This id does not belong to any region",
+  "phonelength": "This phone number does not have 8 digits",
+  "phoneregion": "This phone number does not belong to any region",
+  "idinvalid": "Invalid id",
+  "idinvalid_confirm": "ID do not match",
+  "email": "Email",
+  "confirm_email": "Confirm Email",
+  "validate_email": "Emails do not match",
+  "invalid_email": "Enter a valid email",
+  "password": "Password",
+  "password_hint": "6 characters, 1 uppercase, 1 lowercase, 1 number",
+  "password_characters": "At least six characters",
+  "password_uppercase": "One upper case letter",
+  "password_lowercase": "One lower case letter",
+  "password_number": "One number",
+  "insecure_password": "Insecure password",
+  "confirm_password": "Confirm password",
+  "confirm_password_msg": "Password do not match",
+  "confirm_recipient_email_msg": "Recipient email do not match",
+  "phone": "Phone Number",
+  "birthday": "Birthday",
+  "pick_date": "Pick a date",
+  "country": "Country",
+  "address": "City",
+  "enter_address": "Enter your city",
+  "gender": "Gender",
+  "hint_gender": "Pick your gender...",
+  "hint_birthday": "Pick your bithday...",
+  "session_expired": "Your session has expired. Please log in.",
+  "location_denied": "Turn on Location Services to get your location",
+  "invalid_credentials": "Please enter a valid email address and password",
+  "close_btn": "CLOSE",
+  "search": "Search",
+  "remaining_characters": "remaining characters",
+  "launcher": {
+    "launch_msg": "Welcome!",
+    "launch_txt1": "Create your account and get rewards for your purchases.",
+    "launch_txt2": "Recompensas",
+    "launch_txt3": "Acumula sonrisas para la billetera del ahorro  y podrás utilizar en tu próxima compra. "
+  },
+  "menu_view": {
+    "skip": "Skip to Invoice",
+    "logout": "Log Out"
+  },
+  "menu_items": {
+    "home": "Home",
+    "cashback": "Points",
+    "rewards": "Benefits",
+    "history": "History",
+    "locations": "Reserve a Table",
+    "logout": "Logout",
+    "coupons": "Benefits",
+    "profile": "Profile",
+    "prepaid": "M Card",
+    "egift": "Buy a Gift Card",
+    "egift-floating": "Buy Gift Card",
+    "check-balance": "Check Your Balance"
+  },
+  "rewards_view": {
+    "step1": "Bronze",
+    "step2": "Silver",
+    "step3": "Gold",
+    "header": "Level",
+    "title": "Rewards",
+    "main_msg": "Available benefits",
+    "main_msg1": "Redeem your prizes at any uteg store, just show your screen when placing your order.",
+    "msg": "Consumption to date:",
+    "msg1": "Points expire date:",
+    "msg2": "Current level:",
+    "msg3": "Cookies:",
+    "msg4": " days",
+    "next_status": "Progress of visits",
+    "next_status_detail": "You have {{currentVisits}} visits accumulated in the last 365 days. To reach the {{nextStatus}} level you are {{leftVisits}} short of {{leftVisits}} visits",
+    "status_detail": "You have gained {{statusValue}} visits in the last 365 days",
+    "visits": "visits"
+  },
+  "cashback_view": {
+    "title": "Available Points",
+    "msg": "Your available balance is:",
+    "msg1": "Show your code, collect points to increase your balance",
+    "msg2": "Consumptions are non-transferable and can only be registered in your loyalty account scanning the temporary access code.",
+    "msg3": "",
+    "progress_text": "You only need {{leftPoints}} to get your <strong>$20 Cashback</strong>"
+  },
+  "locales_view": {
+    "title": "Reserve a Table",
+    "order_online": "Reserve a Table",
+    "pickup": "Pickup in-store",
+    "open": "OPEN",
+    "close": "CLOSED",
+    "search_area": "Search this area",
+    "empty_msg": "We did not find nearby places",
+    "result_msg": "Closest stores to you:",
+    "filter_msg": "Show order online stores",
+    "searchbar_msg": "Search by street, landmark, city, etc.",
+    "hour": "HOURS",
+    "until": "until",
+    "opensat": "opens at",
+    "marker": "Your location",
+    "go_to_map": "Go to Map",
+    "geolocation_denied_msg": "To see locations near you, please make sure to allow your browser Location permissions and then refresh the page."
+  },
+  "transactions_view": {
+    "title": "Your latest movements",
+    "details": "View Details",
+    "consumo": "Transaction",
+    "subtotal": "Subtotal",
+    "factura": "Invoice:",
+    "empty_title": "There are no registered transactions",
+    "empty_subtitle": "Select view transactions to try again",
+    "empty_btn": "View Transactions"
+  },
+  "days": {
+    "day_1": "MON",
+    "day_2": "TUE",
+    "day_3": "WED",
+    "day_4": "THU",
+    "day_5": "FRI",
+    "day_6": "SAT",
+    "day_7": "SUN"
+  },
+  "months": {
+    "month_1": "January",
+    "month_2": "February",
+    "month_3": "March",
+    "month_4": "April",
+    "month_5": "May",
+    "month_6": "June",
+    "month_7": "July",
+    "month_8": "August",
+    "month_9": "September",
+    "month_10": "October",
+    "month_11": "November",
+    "month_12": "December"
+  },
+  "genders": {
+    "f": "Female",
+    "m": "Male",
+    "o": "Other"
+  },
+  "egift_send_types": {
+    "today": "Today",
+    "future_date": "Future date"
+  },
+  "view_alerts": {
+    "msg1": "Enter your login information",
+    "msg2": "Enter your personal data",
+    "msg3": "Enter your contact information",
+    "enter_phone": "Please re-enter your phone number",
+    "activate": "Enter the 6-digit code sent by E-mail",
+    "reset": "You already have a uteg account. If you don't remember your password, reset it ",
+    "reset1": "by clicking here",
+    "terms1": "I have read and agree with",
+    "terms2": "Terms of Service",
+    "terms3": ", additionally, I agree to receive promotional content and great offers via email and SMS ",
+    "terms4": "Privacy Policy",
+    "consent": "",
+    "phone_format": "Check your phone number format",
+    "email_send": "Your email has been successfully sent",
+    "sms_send": "Your SMS code verification has been successfully sent",
+    "invalid_credentials": "Invalid email/password combination",
+    "invalid_phone": "This phone number is already registered",
+    "invalid_email": "The email entered has not been registered",
+    "email_exists": "This email is already registered",
+    "email_updated": "Email updated, please login again.",
+    "frc_code_exists": "This FRC code is already registered",
+    "frc_code_invalid": "This FRC code is invalid",
+    "go_home": "Go to Home",
+    "promotions_consent": "I agree for uteg! to send me marketing content and promotions via email and SMS."
+  },
+  "barcode": {
+    "msg": "Show your QR Code",
+    "msg1": " QR ",
+    "msg2": "to add or redeem your points.",
+    "msg3": "You have ",
+    "msg4": " points"
+  },
+  "transaction_view": {
+    "quickpay_used": "Account balance spent",
+    "quickpay_loaded": "Account reload",
+    "quickpay_balance": "Balance remaining"
+  },
+  "contacto_view": {
+    "opt1": "Customer Service",
+    "opt2": "Whatsapp"
+  },
+  "coupons_view": {
+    "title": "Available benefits",
+    "sub_title": "Check here your benefits and redeem them at your favorite uteg",
+    "empty_title": "There are no registered coupons",
+    "empty_subtitle": "Refresh the site to try again",
+    "empty_btn": "Load Coupons"
+  },
+  "profile_view": {
+    "setting": "settings",
+    "notification": "Notifications",
+    "title": "General information ",
+    "address": "Address",
+    "empty_address_msg": "Select country...",
+    "contact_preference": "Contact preference",
+    "msg": "I accept the receipt of emails and SMS with promotional offers from uteg",
+    "delete_account": "Delete account",
+    "msg_update": "Your data has been updated",
+    "change": "Change",
+    "update_password": "Update password",
+    "delete_account_msg": "We have sent a delete account code to your email",
+    "update_password_msg": "Your password has been updated. Please log in again",
+    "update_email_msg": "Your email has been updated. Please log in again",
+    "current_password": "Current Password",
+    "currentpass_msg": "Before we change your email address or password, we need to verify you are the account owner",
+    "validation_msg": "Account verification",
+    "validation_msg1": "An email has been sent to verify your uteg account. Please, enter the verification code below",
+    "terms_and_conditions": "Terms and conditions",
+    "phone_number_view": {
+      "title": "Update Phone Number",
+      "opt1": "New Phone Number",
+      "validation_msg": "Validate Phone Number",
+      "validation_msg1": "A SMS has been sent to verify your phone number. Please enter the verification code below",
+      "resend": "Send again",
+      "btn_validate": "Verify phone number",
+      "updated": "Phone number successfully updated"
+    },
+    "check_employee": "Are you an employee of MYT Group?",
+    "check_employee_msg": "Enter your RFC with homoclave to validate your discount program"
+  },
+  "forms_errors": {
+    "email": {
+      "required": "Please input your e-mail",
+      "email": "Please input a valid email"
+    },
+    "confirmEmail": {
+      "required": "Please input your confirmation e-mail",
+      "email": "Please input a valid confirmation e-mail"
+    },
+    "password": {
+      "required": "Please input your password"
+    },
+    "confirmPassword": {
+      "required": "Please confirm your password",
+      "matching": "Passwords don't match"
+    },
+    "token": {
+      "required": "Please input the code"
+    },
+    "idnumber": {
+      "required": "Please input your ID number",
+      "minlenght": "Please enter a valid ID with at least 8 digits"
+    },
+    "confirmidnumber": {
+      "required": "Please confirm your ID number"
+    },
+    "passport_number": {
+      "required": "Please input your passport number"
+    },
+    "first_name": {
+      "required": "Please input your first name"
+    },
+    "last_name": {
+      "required": "Please input your last name"
+    },
+    "address": {
+      "required": "Please input your address"
+    },
+    "phone_number": {
+      "required": "Please input your mobile number"
+    },
+    "birthdate": {
+      "legal_age": "Must be over 18 years of age"
+    }
+  },
+  "paginator": {
+    "items_per_page": "Per page",
+    "next_page": "Next page",
+    "previous_page": "Previous page",
+    "first_page": "First page",
+    "last_page": "Last page",
+    "of_label": "of"
+  },
+  "promotion_view": {
+    "opt1": "Before activating the promotion you must log in or register an account",
+    "opt2": "Activate the promotion by clicking the Activate button",
+    "opt3": "You have activated the promotion successfully",
+    "btn1": "Activate",
+    "btn2": "Start",
+    "alert": "Sorry, an error occurred. Please try again.",
+    "alert1": "This promotion has already been redeemed before."
+  },
+  "egift_view": {
+    "amount": "Gift Amount",
+    "other": "Other",
+    "form": {
+      "gift_qty": "Amount of gift",
+      "to": "To",
+      "recipient_name": "Recipient name",
+      "recipient_email": "Recipient email",
+      "confirm_recipient_email": "Confirm recipient email",
+      "message": "Message to appear on your voucher",
+      "from": "From",
+      "sendon": "Send On",
+      "sender_name": "Sender name",
+      "sender_email": "Sender email",
+      "same_mail_alert": "Sender mail can't be the same as Recipient mail",
+      "date": "Date you would like voucher sent",
+      "today": "Today",
+      "cc_details": "Enter Credit Card Details",
+      "cc_details1": "Select Payment Method",
+      "cc_name": "Name",
+      "cc_number": "Card number",
+      "cc_nick": "Card nickname (optional)",
+      "cc_cvc": "CVC",
+      "cc_exp": "EXP",
+      "cc_mm": "MM",
+      "cc_yy": "YYYY",
+      "cc_postal_code": "Postal Code",
+      "cc_msg": "Secure Transaction Guarantee",
+      "cc_msg1": "This application is secured with 128bit encryption for all transaction data. We do not store your credit card information. Your payment is processed and stored by a fully PCI-DSS compliant payment provider."
+    },
+    "success": {
+      "msg": "Success",
+      "msg1": "Your eGift will be sent to {{recipientName}}",
+      "today": " within the next 15 minutes",
+      "future": " on",
+      "buy_another": "Buy a new e-gift",
+      "btn2": "Finish",
+      "thanks_title": "Thanks for your purchase!"
+    },
+    "sent_msgs": {
+      "msg": "Your data has been successfully saved."
+    }
+  },
+  "transfer_view": {
+    "opt1": "Transfer Egift to account",
+    "opt2": "Transfer Egift by clicking the Transfer button",
+    "opt3": "You have transferred $",
+    "opt3_1": " to your account successfully!. Check your history and updated balance with your E-Gift redeemed.",
+    "opt4": "This egift has already been added to an account.",
+    "btn1": "Transfer",
+    "btn2": "Continue",
+    "alert": ""
+  },
+  "reload_view": {
+    "add_reload": "Add prepaid balance",
+    "title": "Reload",
+    "amount": "Reload amount",
+    "amount_auto_reload": "Balance less than",
+    "payment": "Add a new payment method",
+    "card": "Payment method",
+    "btn_complete": "Complete",
+    "complete": "Reload Complete",
+    "auto": "Auto-Reload",
+    "balance": "Balance Below",
+    "auto_reload_msg_description": "Your balance will be automatically recharged each time it falls below the set amount"
+  },
+  "cards_view": {
+    "title": "Credit Cards",
+    "msg": "Add a credit card",
+    "msg1": "We accept the following credit cards",
+    "msg2": "To prevent fraud, a $1 charge is made, and inmediately refunded when adding a credit card. You may temporarily see this change on your statement.",
+    "btn_delete": "Delete"
+  },
+  "checkbalance_view": {
+    "msg": "Enter your card to check your account balance",
+    "msg1": "Enter the 16 digit card number & 3 digit PIN on the back of your card",
+    "btn": "check your balance"
+  },
+  "prepaid_view": {
+    "title": "Gift card balance",
+    "title1": "Your available prepaid balance is:",
+    "btn": "Cards",
+    "btn1": "Add a new Credit/Debit Card",
+    "reload": "Reload",
+    "auto_reload": "Auto-Reload",
+    "auto_reload_msg": "Click here to schedule your recharges",
+    "reload_offer_msg": "+15% Gift",
+    "reload_offer_msg1": "Receive +15% extra credit every time you recharge your prepaid credit balance",
+    "addcard_view_title": "Add a new Credit/Debit card",
+    "addcard_title": "Add Cards",
+    "addcard_title1": "Add a card",
+    "addcard_title2": "Number & Pin",
+    "addcard_msg": "Enter the 16 digits of the card and the 3 digits of your PIN on the back of the card",
+    "addcard_msg1": "Adding this card will add the points and the monetary balance to your account. This action cannot be reversed.",
+    "addcard_btn1": "Send",
+    "addcard_btn2": "Cancel",
+    "addcard_btn3": "Edit",
+    "addcard_pin_msg": "If your card does not have PIN, leave the field empty"
+  },
+  "checkin_view": {
+    "opt0": "Please select one of the options below:",
+    "btn0_1": "Would you like to pay the bill at the table?",
+    "btn0_2": "Check-in",
+    "opt1": "Before proceeding you must log in or register if you haven't registered",
+    "opt2": "Check-in",
+    "opt2_1": "Check-in and start enjoying",
+    "opt3": "How do you want to pay?",
+    "opt3_1": "Balance",
+    "opt3_2": "E-gift",
+    "opt3_3": "Other",
+    "opt4": "Do you want to Redeem your benefits?",
+    "btn1": "Start Check-in",
+    "btn2": "Check-in",
+    "alert": "Unidentified local code",
+    "alert1": "You have checked-in at the table "
+  },
+  "check_balance": {
+    "title": "Check Balance",
+    "subtitle": "Enter your card number below to check your account balance. If your card does not have PIN, leave the field empty",
+    "result_message": "Balance:",
+    "card_input_label": "Card number",
+    "pin_input_label": "Card Pin",
+    "check_balance_button": "Check Balance",
+    "card_input_errors": {
+      "required": "Enter a card number",
+      "pattern": "Card numbers can't contain spaces or special characters"
+    },
+    "pin_input_errors": {
+      "pattern": "PIN numbers can contain number only"
+    }
+  },
+  "home_screen_view": {
+    "order_as_guest": "Reserve a Table"
+  }
+}

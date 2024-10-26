@@ -1,0 +1,56 @@
+<div class="row no-gutters m-0">
+  <div class="home-screen">
+    <mat-sidenav-container class="home-screen__sidebar">
+      <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z4">
+        <div class="d-flex justify-content-end topbar__right w-100">
+          <div *ngIf="sidenav.opened">
+            <button mat-icon-button class="text-black" (click)="sidenav.toggle()">
+              <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="w-100 px-2">
+          <div *ngFor="let menuItem of menuItems;">
+            <button *ngIf="menuItem.name !== 'home'"
+                    mat-button class="home-screen__sidebar__menu-button text-start h-100 p-0"
+                    (click)="displayComponent(menuItem.path)"
+                    [ngClass]="{
+                          'menu-button-active': menuItem.subPaths.indexOf(router.url) >= 0
+                        }">
+              <i *ngIf="menuItem.name !== 'locations'" [ngClass]="['mdi', 'mdi-' + menuItem.icon]"></i>
+              <mat-icon *ngIf="menuItem.name === 'locations'" [svgIcon]="menuItem.icon"></mat-icon>
+              <span>{{ "menu_items." + menuItem.name | translate }}</span>
+            </button>
+          </div>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="home-screen__container">
+          <!--mat-toolbar class="no-bg">
+            <div class="topbar__left">
+              <div>
+                <button mat-icon-button (click)="sidenav.toggle()" class="topbar__left__burger">
+                  <mat-icon *ngIf="!sidenav.opened" class="topbar__left__burger-icon">menu</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="topbar__center">
+            </div>
+            <div class="topbar__right">
+            </div>
+          </mat-toolbar-->
+          <img class="home-screen__logo" src="assets/images/logo.webp"/>
+          <a class="btn-mhospitality--outlined rounded-5" href="login">{{ 'login_btn' | translate }}</a>
+          <!--a class="btn-mhospitality--outlined rounded-5" href="register">{{ 'register_ttl' | translate }}</a>
+          <a class="btn-mhospitality--outlined rounded-5"
+             href="loyalty/orders">{{ 'home_screen_view.order_as_guest' | translate }}</a-->
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  <div class="home-screen-second__background">
+    <div class="home-screen-second-inside__background"></div>
+  </div>
+</div>
+
+

@@ -1,0 +1,10 @@
+@import '../../global';
+
+.reload-value {
+  @extend .montserrat-bold;
+
+  &__active-option {
+    background-color: $primary-color;
+    color: $secondary-color;
+  }
+}

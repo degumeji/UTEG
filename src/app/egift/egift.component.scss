@@ -1,0 +1,38 @@
+@import '../../variables';
+@import '../../fonts';
+
+.egift {
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+
+    button {
+      @extend .montserrat-bold;
+    }
+  }
+
+  &-value {
+    &__active-option {
+      background-color: $primary-color;
+      color: $secondary-color;
+    }
+  }
+
+  &__amount {
+    font-size: 3em;
+  }
+
+  &__email {
+    line-break: anywhere;
+  }
+
+  &__date {
+    background-color: rgba($primary-color, .1);
+    width: fit-content;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

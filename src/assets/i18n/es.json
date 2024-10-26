@@ -1,0 +1,459 @@
+{
+  "login": "Inicio",
+  "register": "Registro",
+  "login_ttl": "Iniciar sesión",
+  "login_sttl": "¿No tienes una cuenta? ",
+  "login_sttl2": "Regístrate",
+  "login_msg": "Recuperar contraseña",
+  "login_msg1": "Haz clic aquí para resetearla",
+  "login_btn": "Iniciar sesión",
+  "register_ttl": "Regístrate",
+  "register_sub_ttl": "¿Eres nuevo aquí?",
+  "register_msg": "Para comenzar, ingresa tus datos:",
+  "register_btn": "Regístrate",
+  "restorepass_ttl": "Restaurar Contraseña",
+  "resporepass_to_login": "Iniciar sesión",
+  "restorepass_msg": "Ingresa el correo electrónico de tu cuenta de usuario para enviar un código de validación:",
+  "restorepass_msg2": "La contraseña ha sido actualizada con éxito. Hemos enviado un correo electrónico de confirmación de la actualización de la contraseña.",
+  "restorepass_msg3": "Por favor llena todos los campos.",
+  "updatepass_msg": "Ingresa tu nueva contraseña",
+  "enter_code_msg": "Hemos enviado un correo con el código de validación a",
+  "enter_code": "Ingresar código",
+  "send": "Enviar",
+  "next": "Siguiente",
+  "save": "Guardar",
+  "loading": "Cargando",
+  "balances": "Saldos",
+  "resend": "Reenviar",
+  "resend_email": "Reenviar e-mail",
+  "resend_sms": "Reenviar SMS",
+  "edit_phone": "Editar número de teléfono",
+  "firstname": "Nombres",
+  "lastname": "Apellidos",
+  "idType": "Tipo de identificación",
+  "idnumber": "Cédula",
+  "idnumber_confirm": "Confirmar cédula",
+  "passport_number": "Pasaporte",
+  "idlength": "Esta cédula tiene menos de 10 Digitos",
+  "idregion": "Esta cédula no pertenece a ninguna region",
+  "phonelength": "Este número tiene menos de 8 Digitos",
+  "phoneregion": "Este número no pertenece a ninguna region",
+  "idinvalid": "Cédula invalida",
+  "idinvalid_confirm": "Cédulas no coinciden",
+  "email": "Correo electrónico",
+  "confirm_email": "Reingresa el Correo",
+  "validate_email": "Correos no coinciden",
+  "invalid_email": "Ingresar un correo válido",
+  "password": "Contraseña",
+  "password_hint": "6 caracteres, 1 minus, 1 mayus, 1 num",
+  "password_characters": "Al menos seis caracteres",
+  "password_uppercase": "Una letra mayúscula",
+  "password_lowercase": "Una letra minúscula",
+  "password_number": "Un número",
+  "insecure_password": "Contraseña insegura",
+  "confirm_password": "Confirma la contraseña",
+  "confirm_password_msg": "Contraseñas no coinciden",
+  "confirm_recipient_email_msg": "Correos electrónicos del destinatario no coinciden",
+  "phone": "Número de teléfono",
+  "birthday": "Fecha de nacimiento",
+  "pick_date": "Selecciona una fecha",
+  "country": "País",
+  "address": "Ciudad",
+  "enter_address": "Ingresa tu ciudad",
+  "gender": "Género",
+  "hint_gender": "Selecciona el género...",
+  "hint_birthday": "Selecciona tu fecha de nacimiento...",
+  "session_expired": "Tu sesión ha expirado, por favor inicia sesión nuevamente.",
+  "location_denied": "Concede permiso desde configuración para acceder a tu ubicación",
+  "invalid_credentials": "Por favor ingresar correo electrónico y contraseña validos.",
+  "close_btn": "CERRAR",
+  "search": "Buscar",
+  "remaining_characters": "caracteres restantes",
+  "launcher": {
+    "launch_msg": "¡Bienvenidos!",
+    "launch_txt1": "Crea tu cuenta y obtén grandes beneficios por tus consumos. ",
+    "launch_txt2": "Recompensas",
+    "launch_txt3": "Acumula felicidad para la billetera del ahorro  y podrás utilizar en tu próxima compra. "
+  },
+  "menu_view": {
+    "skip": "Saltar a la factura",
+    "logout": "Salir"
+  },
+  "menu_items": {
+    "home": "Inicio",
+    "cashback": "Puntos",
+    "rewards": "Beneficios",
+    "history": "Historial",
+    "locations": "Reserva una Mesa",
+    "logout": "Salir",
+    "coupons": "Beneficios",
+    "profile": "Perfil",
+    "prepaid": "M Card",
+    "egift": "Compra una Gift Card",
+    "egift-floating": "Comprar Gift Card",
+    "check-balance": "Consulta Tu Saldo"
+  },
+  "rewards_view": {
+    "step1": "Bronce",
+    "step2": "Plata",
+    "step3": "Oro",
+    "header": "Nivel",
+    "title": "Premios",
+    "main_msg": "Beneficios disponibles",
+    "main_msg1": "Puedes redimir tus premios en cualquier kiosko de uteg, sólo muestra tu pantalla al momento de realizar tu pedido.",
+    "msg": "Consumos a la fecha:",
+    "msg1": "Puntos expira en:",
+    "msg2": "Estás en Nivel:",
+    "msg3": "Cuantas galletas tengo:",
+    "msg4": " días",
+    "next_status": "Avance de visitas",
+    "next_status_detail": "Tienes {{currentVisits}} visitas acumuladas en los últimos 365 días. Para llegar al Nivel {{nextStatus}} te faltan {{leftVisits}} visitas",
+    "status_detail": "Has ganado {{statusValue}} visitas en los últimos 365 días",
+    "visits": "visitas"
+  },
+  "cashback_view": {
+    "title": "Puntos Disponibles",
+    "msg": "Tu saldo acumulado es:",
+    "msg1": "Muestra tu código, acumula puntos para incrementar tu saldo",
+    "msg2": "Los consumos son intransferibles y solo podrán registrarse en tu cuenta de fidelización escaneando el código el acceso temporal.",
+    "msg3": "",
+    "progress_text": "Solo necesitas {{leftPoints}} más para obtener tu <strong>$20 Cashback</strong>"
+  },
+  "locales_view": {
+    "title": "Ordena en línea",
+    "order_online": "Ordena en línea",
+    "pickup": "Recoger en local",
+    "open": "ABIERTO",
+    "close": "CERRADO",
+    "search_area": "Buscar en esta area",
+    "empty_msg": "No encontramos locales cercanos",
+    "result_msg": "Aquí están las tiendas más cercana a usted:",
+    "filter_msg": "Mostrar locales con orden en línea",
+    "searchbar_msg": "Busca por calle, punto de referencia, ciudad, etc.",
+    "hour": "Horario",
+    "until": "hasta",
+    "opensat": "abre a",
+    "marker": "Tú ubicación",
+    "go_to_map": "Ver Mapa",
+    "geolocation_denied_msg": "Para ver los locales cercanos a ti, por favor, asegúrate de dar los permisos de Ubicación a tu navegador y luego refresca la página."
+  },
+  "transactions_view": {
+    "title": "Tus últimos Movimientos",
+    "details": "Ver Detalles",
+    "consumo": "Consumos",
+    "subtotal": "Subtotal",
+    "factura": "Factura:",
+    "empty_title": "No hay consumos registrados",
+    "empty_subtitle": "Selecciona ver consumos para volver a intentarlo.",
+    "empty_btn": "Ver Consumos"
+  },
+  "days": {
+    "day_1": "LUN",
+    "day_2": "MAR",
+    "day_3": "MIE",
+    "day_4": "JUE",
+    "day_5": "VIE",
+    "day_6": "SAB",
+    "day_7": "DOM"
+  },
+  "months": {
+    "month_1": "Enero",
+    "month_2": "Febrero",
+    "month_3": "Marzo",
+    "month_4": "Abril",
+    "month_5": "Mayo",
+    "month_6": "Junio",
+    "month_7": "Julio",
+    "month_8": "Agosto",
+    "month_9": "Septiembre",
+    "month_10": "Octubre",
+    "month_11": "Noviembre",
+    "month_12": "Diciembre"
+  },
+  "genders": {
+    "f": "Femenino",
+    "m": "Masculino",
+    "o": "Otros"
+  },
+  "egift_send_types": {
+    "today": "Hoy",
+    "future_date": "Fecha futura"
+  },
+  "view_alerts": {
+    "msg1": "Ingresa tu información de acceso",
+    "msg2": "Ingresa tus datos personales",
+    "msg3": "Ingresa tu información de contacto",
+    "enter_phone": "Por favor vuelve a ingresar tu número de teléfono",
+    "activate": "Ingresa el código de 6 digitos enviado por E-mail",
+    "reset": "Ya tienes una cuenta con uteg. Si olvidaste tu contraseña, reestablecela ",
+    "reset1": "haciendo clic aquí",
+    "terms1": "He leído y acepto ",
+    "terms2": "Términos de Servicio",
+    "terms3": ", adicionalmente acepto recibir contenido promocional y grandiosas ofertas vía email y SMS",
+    "terms4": "Política de Privacidad",
+    "consent": "",
+    "phone_format": "Compruebe su formato de número de teléfono",
+    "email_send": "El correo fue enviado exitosamente",
+    "sms_send": "El SMS de verificación fue enviado exitosamente",
+    "invalid_credentials": "Combinación de correo electrónico/contraseña no válida",
+    "invalid_phone": "Este número de teléfono ya se encuentra registrado",
+    "invalid_email": "El correo ingresado no se encuentra registrado",
+    "email_exists": "El correo ingresado ya se encuentra registrado",
+    "email_updated": "Correo electrónico actualizado, por favor inicia sesión nuevamente.",
+    "frc_code_exists": "Este código RFC ya se encuentra registrado",
+    "frc_code_invalid": "Este código RFC no es válido",
+    "go_home": "Ir a Inicio",
+    "promotions_consent": "¡Estoy de acuerdo con uteg! para que me envíe contenido de marketing y promociones vía email y SMS."
+  },
+  "barcode": {
+    "msg": "Muestra tu código",
+    "msg1": " QR ",
+    "msg2": "en caja para sumar o redimir tus sellos.",
+    "msg3": "Tienes ",
+    "msg4": " sellos"
+  },
+  "transaction_view": {
+    "quickpay_used": "Saldo Prepago utilizado",
+    "quickpay_loaded": "Saldo Prepago cargado",
+    "quickpay_balance": "Saldo restante"
+  },
+  "contacto_view": {
+    "opt1": "Servicio al Cliente",
+    "opt2": "Whatsapp"
+  },
+  "coupons_view": {
+    "title": "Beneficios disponibles",
+    "sub_title": "Consulta aquí tus beneficios y canjéalos en tu uteg favorito",
+    "empty_title": "No hay cupones registrados",
+    "empty_subtitle": "Refresca el sitio para volver a intentarlo.",
+    "empty_btn": "Cargar Cupones"
+  },
+  "profile_view": {
+    "setting": "Opciones",
+    "notification": "Notificaciones",
+    "title": "Información general",
+    "address": "Dirección",
+    "empty_address_msg": "Selecciona el país...",
+    "contact_preference": "Preferencia de contacto",
+    "msg": "Acepto la recepción de correos electrónicos y SMS con ofertas promocionales de uteg",
+    "delete_account": "Eliminar cuenta",
+    "msg_update": "Tus datos han sido actualizados",
+    "change": "Cambiar",
+    "update_password": "Actualizar contraseña",
+    "delete_account_msg": "Hemos enviado un codigo de eliminacion de cuenta a tu correo electrónico",
+    "update_password_msg": "Su contraseña ha sido actualizada. Por favor inicia sesión nuevamente",
+    "update_email_msg": "Su correo electrónico ha sido actualizado. Por favor inicia sesión nuevamente",
+    "current_password": "Contraseña Actual",
+    "currentpass_msg": "Antes de cambiar su dirección de correo electrónico o contraseña, debemos verificar que usted es el propietario de la cuenta",
+    "validation_msg": "Verificación de la cuenta",
+    "validation_msg1": "Se ha enviado un correo electrónico para verificar su cuenta de uteg. Por favor, ingrese el código de verificación a continuación",
+    "terms_and_conditions": "Términos y condiciones",
+    "phone_number_view": {
+      "title": "Actualizar número de teléfono",
+      "opt1": "Nuevo número de teléfono",
+      "validation_msg": "Validar Número",
+      "validation_msg1": "Se ha enviado un mensaje de texto para verificar el número de teléfono. Por favor, ingrese el código de verificación a continuación",
+      "resend": "Reenviar",
+      "btn_validate": "Verificar número",
+      "updated": "Número de teléfono actualizado"
+    },
+    "check_employee": "¿Eres empleado de Grupo MYT?",
+    "check_employee_msg": "Introduce tu RFC con homoclave para validar tu programa de descuentos"
+  },
+  "forms_errors": {
+    "email": {
+      "required": "Por favor ingresa tu e-mail",
+      "email": "Por favor ingresa un e-mail válido"
+    },
+    "confirmEmail": {
+      "required": "Por favor ingresa tu e-mail de confirmación",
+      "email": "Por favor ingresa un e-mail de confirmación válido"
+    },
+    "password": {
+      "required": "Por favor ingresa tu contraseña"
+    },
+    "confirmPassword": {
+      "required": "Por favor confirma tu contraseña",
+      "matching": "Las contraseñas no coinciden"
+    },
+    "token": {
+      "required": "Por favor ingresa el código"
+    },
+    "idnumber": {
+      "required": "Por favor ingresa tu cédula",
+      "minlenght": "Por favor ingresa una cédula válida de al menos 8 números"
+    },
+    "confirmidnumber": {
+      "required": "Por favor confirma tu cédula"
+    },
+    "passport_number": {
+      "required": "Por favor ingresa tu número de pasadorte"
+    },
+    "first_name": {
+      "required": "Por favor ingresa tu nombre"
+    },
+    "last_name": {
+      "required": "Por favor ingresa tu apellido"
+    },
+    "address": {
+      "required": "Por favor ingresa tu dirección"
+    },
+    "phone_number": {
+      "required": "Por favor ingresa tu número de celular"
+    },
+    "birthdate": {
+      "legal_age": "Debe ser mayor a 18 años"
+    }
+  },
+  "paginator": {
+    "items_per_page": "Por página",
+    "next_page": "Siguiente página",
+    "previous_page": "Anterior página",
+    "first_page": "Primera página",
+    "last_page": "Última página",
+    "of_label": "de"
+  },
+  "promotion_view": {
+    "opt1": "Antes de activar la promoción debes iniciar sesión o registrarte si no te has registrado",
+    "opt2": "Activa la promoción pulsando el botón Activar",
+    "opt3": "Has activado la promoción correctamente",
+    "btn1": "Activar",
+    "btn2": "Inicio",
+    "alert": "Lo sentimos, ha ocurrido un error. Por favor intenta nuevamente.",
+    "alert1": "Esta promoción ya ha sido redimida."
+  },
+  "egift_view": {
+    "amount": "Cantidad",
+    "other": "Otro",
+    "form": {
+      "gift_qty": "Monto del regalo",
+      "to": "Para",
+      "recipient_name": "Nombre del destinatario",
+      "recipient_email": "Correo electrónico del destinatario",
+      "confirm_recipient_email": "Confirmar correo electrónico del destinatario",
+      "message": "Mensaje que se mostrará en tu voucher",
+      "from": "De",
+      "sendon": "Enviar en",
+      "sender_name": "Nombre del remitente",
+      "sender_email": "Correo electrónico del remitente",
+      "same_mail_alert": "El correo del Remitente no puede ser igual al Destinatario",
+      "date": "Fecha",
+      "today": "Hoy",
+      "cc_details": "Ingrese los detalles de la tarjeta de crédito",
+      "cc_details1": "Seleccionar método de pago",
+      "cc_name": "Nombre",
+      "cc_number": "Número de tarjeta",
+      "cc_nick": "Apodo de la tarjeta (opcional)",
+      "cc_cvc": "CVC",
+      "cc_exp": "EXP",
+      "cc_mm": "MM",
+      "cc_yy": "YYYY",
+      "cc_postal_code": "Código Postal",
+      "cc_msg": "Garantía de transacción segura",
+      "cc_msg1": "Esta aplicación está protegida con encriptación de 128 bits para todos los datos de transacciones. No almacenamos la información de su tarjeta de crédito. Su pago es procesado y almacenado por un proveedor de pagos que cumple totalmente con PCI-DSS."
+    },
+    "success": {
+      "msg": "Envío Exitoso",
+      "msg1": "Tu regalo electrónico será enviado a {{recipientName}}",
+      "today": " dentro de los próximos 15 minutos",
+      "future": " el",
+      "buy_another": "Comprar otro e-gift",
+      "btn2": "Finalizar",
+      "thanks_title": "¡Gracias por tu compra!"
+    },
+    "sent_msgs": {
+      "msg": "Tus datos se han guardado con éxito."
+    }
+  },
+  "transfer_view": {
+    "opt1": "Transfiere tu Egift a una cuenta",
+    "opt2": "Transfiere tu Egift pulsando el botón Transferir",
+    "opt3": "¡Has transferido $",
+    "opt3_1": " a tu cuenta con éxito!. Revisa tu historial y saldo actualizado con tu E-Gift ya recargado.",
+    "opt4": "Este Egift ya ha sido agregado a una cuenta",
+    "btn1": "Transferir",
+    "btn2": "Continuar",
+    "alert": ""
+  },
+  "reload_view": {
+    "add_reload": "Agregar saldo prepago",
+    "title": "Recargar",
+    "amount": "Recargar monto",
+    "amount_auto_reload": "Saldo por debajo de",
+    "payment": "Agregar un nuevo método de pago",
+    "card": "Tarjeta de pago",
+    "btn_complete": "Completado",
+    "complete": "Recarga completa",
+    "auto": "Recarga automática",
+    "balance": "Saldo",
+    "auto_reload_msg_description": "Tu saldo se recargará automáticamente cada vez que se encuentre por debajo del monto configurado"
+  },
+  "cards_view": {
+    "title": "Tarjetas de crédito",
+    "msg": "Agregar una tarjeta de crédito",
+    "msg1": "Aceptamos las siguientes tarjetas de crédito",
+    "msg2": "Para evitar fraudes, se realiza un cargo de $1 y se reembolsa inmediatamente al agregar una tarjeta de crédito. Es posible que vea este cambio temporalmente en su estado de cuenta.",
+    "btn_delete": "Eliminar"
+  },
+  "checkbalance_view": {
+    "msg": "Ingresa tu tarjeta para verificar el saldo de tu cuenta",
+    "msg1": "Ingresa los 16 digitos de tu tarjeta y los 3 digitos del PIN de seguridad que se encuentra en el respaldo de tu tarjeta",
+    "btn": "consultar saldo"
+  },
+  "prepaid_view": {
+    "title": "Saldo gift card",
+    "title1": "Su saldo prepago disponible es:",
+    "btn": "Tarjetas",
+    "btn1": "Agregar una nueva tarjeta de regalo",
+    "reload": "Recargar",
+    "auto_reload": "Recarga-automática",
+    "auto_reload_msg": "Pulsa aquí para programar tus recargas",
+    "reload_offer_msg": "+15% de regalo",
+    "reload_offer_msg1": "Recibe +15% de saldo extra cada vez que recargues saldo prepago",
+    "addcard_view_title": "Agrega una nueva tarjeta de regalo",
+    "addcard_title": "Agregar Tarjetas",
+    "addcard_title1": "Agregar una tarjeta",
+    "addcard_title2": "Número y PIN",
+    "addcard_msg": "Ingrese los 16 dígitos de la tarjeta y los 3 dígitos de su PIN en el reverso de la tarjeta",
+    "addcard_msg1": "Al agregar esta tarjeta, se agregarán los puntos y el saldo monetario a su cuenta. Esta acción no se puede revertir.",
+    "addcard_btn1": "Enviar",
+    "addcard_btn2": "Cancelar",
+    "addcard_btn3": "Editar",
+    "addcard_pin_msg": "Si tu tarjeta no tiene PIN, deja el campo vacío"
+  },
+  "checkin_view": {
+    "opt0": "Por favor selecciona una de las siguientes opciones:",
+    "btn0_1": "¿Deseas pagar tu cuenta desde la mesa?",
+    "btn0_2": "Realizar Check-in",
+    "opt1": "Antes de continuar debes iniciar sesión o registrarte si no te has registrado",
+    "opt2": "Check-in",
+    "opt2_1": "Realiza el check-in y comienza a disfrutar",
+    "opt3": "¿Cómo deseas abonar?",
+    "opt3_1": "Saldo",
+    "opt3_2": "E-gift",
+    "opt3_3": "Otro",
+    "opt4": "¿Quieres Redimir tus beneficios?",
+    "btn1": "Comenzar Check-in",
+    "btn2": "Realizar Check-in",
+    "alert": "Código de local no identificado",
+    "alert1": "Ha realizado check-in en la mesa "
+  },
+  "check_balance": {
+    "title": "Consultar Saldo Gift Card",
+    "subtitle": "Ingresa el número de tu tarjeta y consulta el balance de tu cuenta. Si tu tarjeta no tiene PIN, deja el campo vacío",
+    "result_message": "Balance:",
+    "card_input_label": "Número de tarjeta",
+    "pin_input_label": "Pin de Tarjeta",
+    "check_balance_button": "Consultar Saldo",
+    "card_input_errors": {
+      "required": "Ingresa un número de tarjeta",
+      "pattern": "Los números de tarjeta no pueden contener espacios o caracteres especiales"
+    },
+    "pin_input_errors": {
+      "pattern": "Los números PIN solo pueden tener números"
+    }
+  },
+  "home_screen_view": {
+    "order_as_guest": "Reserva una Mesa"
+  }
+}

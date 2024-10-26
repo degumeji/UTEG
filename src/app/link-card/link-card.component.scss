@@ -1,0 +1,44 @@
+@import '../../global.scss';
+
+.link-card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  color: $text-color;
+  height: calc(100vh - $header-height - 50vh) !important;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 550px;
+    line-height: 24px;
+    text-align: center;
+
+    &__title {
+      font-size: large;
+      font-weight: bold;
+      }
+    &__form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & input {
+        padding: 0 10px;
+        }
+      &__btn {
+        color: white;
+        }
+      }
+    }
+  }
+:host ::ng-deep .mdc-notched-outline__notch {
+  min-width: 100px;
+  }
+
+

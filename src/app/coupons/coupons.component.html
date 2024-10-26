@@ -1,0 +1,31 @@
+<div>
+  <div class="card card-default">
+    <div class="card-header">
+      <h2>{{ 'coupons_view.title' | translate }}</h2>
+    </div>
+    <div class="card-body" *ngIf="!isError">
+      <mat-paginator (page)="handlePageEvent($event)"
+                     [length]="paginator.total!"
+                     [pageSize]="paginator.limit"
+                     [showFirstLastButtons]="false"
+                     [hidePageSize]="true"
+                     [pageIndex]="paginator.page"
+                     [disabled]="disabledPaginator">
+      </mat-paginator>
+      <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-4" *ngFor="let item of coupons">
+          <div class="card mb-4">
+            <img [src]="item.imagen ? item.imagen : defaultImg" class="coupon__img">
+            <h5 class="pt-4 ps-4">{{ item.name }}</h5>
+            <p class="pb-4 ps-4">{{ item.legales }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body text-center" *ngIf="isError">
+      <h6>{{ 'coupons_view.empty_title' | translate }}</h6>
+      <p>{{ 'coupons_view.empty_subtitle' | translate }}</p>
+    </div>
+  </div>
+  <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type ="ball-spin-clockwise" [fullScreen]="true"><p style="color: white" >{{ 'loading' | translate }}</p></ngx-spinner> -->
+</div>

@@ -1,0 +1,367 @@
+@import '../../global.scss';
+
+.menu-background {
+  display: block;
+  background: rgb(35, 31, 32);
+  background: linear-gradient(60deg, rgba(35, 31, 32, 1) 34%, rgba(74, 74, 74, 1) 100%);
+  height: 100vh;
+}
+
+.options-container {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: auto;
+  padding-block: 0;
+  box-shadow: 0 0 8px #00000059;
+  background-color: white;
+}
+
+.home-option {
+  background: none !important;
+  border-radius: 0;
+  padding: 2.2rem;
+
+  @media #{$xlarge-up} {
+    padding: 2rem;
+  }
+
+  &__icon {
+    width: 10rem !important;
+    height: unset !important;
+  }
+}
+
+.home-option:hover {
+  background: none !important;
+}
+
+.profile-menu-option {
+  padding: 1.8rem 1rem 1.8rem 0.5rem !important;
+  @media only screen and (max-width: 1280px) {
+    padding: 1.6rem 0.8rem 1.6rem 0.3rem !important;
+  }
+}
+
+.icon-profile {
+  height: unset !important;
+  width: 32px !important;
+  font-size: 32px !important;
+  margin: 0 !important;
+  @media only screen and (max-width: 1280px) {
+    width: 32px !important;
+    font-size: 22px !important;
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
+
+mat {
+  &-sidenav {
+    padding-right: 1rem;
+    border-right: none;
+    background: #fff;
+    color: black;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 800px) {
+    &-sidenav-container {
+      height: 100vh;
+      overflow: hidden;
+      max-width: 100%;
+    }
+  }
+
+  &-toolbar {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    padding: 1.9rem 0.94rem;
+    background-color: $primary-color;
+    @media #{$medium-up} {
+      padding: 1.9rem 2.5rem;
+    }
+
+    @media #{$large-up} {
+      padding: 2.5rem 3.13rem;
+    }
+
+    @media #{$xlarge-up} {
+      padding: 2.5rem 3.75rem;
+    }
+  }
+}
+
+.nav-bar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: .2rem;
+
+  &__button {
+    background: transparent !important;
+    color: $secondary-color !important;
+    border-radius: 0;
+    padding: 1.8rem .2rem;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+  }
+
+  &__button:hover {
+    border-bottom-color: $secondary-color;
+  }
+
+  &__button-outlined {
+    padding: 1.475rem;
+    color: $secondary-color !important;
+    background: transparent !important;
+    border: 2px solid $secondary-color;
+
+    @media #{$xlarge-up} {
+      padding: 1.675rem;
+    }
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 15px;
+  }
+
+  &__floating-button {
+    height: 60px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 2% 20px;
+    gap: 4px;
+    display: flex;
+    padding-bottom: 6px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.03), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    @media #{$medium-up} {
+      display: none;
+    }
+
+    .mat-mdc-button-base {
+      font-size: 30px;
+      height: 55px;
+      min-width: 30px;
+      flex: 1;
+      padding-inline: 0;
+    }
+
+    .menu-button-active {
+      color: red;
+    }
+  }
+}
+
+.menu {
+  &-button {
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 16px;
+
+    mat-icon {
+      margin-right: 12px;
+      font-size: 32px;
+      height: 49px;
+      width: 32px;
+    }
+
+    i {
+      margin-right: 12px;
+      font-size: 32px;
+      width: 32px;
+    }
+  }
+
+  &-icon {
+    width: 34px;
+  }
+
+  &-footer-icon {
+    margin: 0 !important;
+    height: initial !important;
+    width: 30px !important;
+  }
+
+  :host ::ng-deep &-footer-active > .mat-icon > svg > * {
+    fill: $primary-color !important;
+    stroke: $primary-color !important;
+  }
+
+  :host ::ng-deep &-footer-active > .mat-icon > svg > * > * {
+    fill: $primary-color !important;
+    stroke: $primary-color !important;
+  }
+
+  :host ::ng-deep &-footer-active > .mat-icon > svg > * > * > * {
+    fill: $primary-color !important;
+    stroke: $primary-color !important;
+  }
+
+  :host ::ng-deep &-footer-active > p,
+  :host ::ng-deep &-footer-active > i {
+    color: $primary-color !important;
+  }
+}
+
+:host ::ng-deep .menu-button > span.mdc-button__label {
+  display: flex !important;
+  align-items: center !important;
+  text-transform: none;
+  color: $secondary-color;
+}
+
+:host ::ng-deep .menu-button-active {
+  svg * {
+    fill: $primary-color;
+  }
+
+  > span.mdc-button__label {
+    color: $primary-color;
+  }
+}
+
+.topbar {
+  &__branding {
+    float: left;
+    height: 60px;
+    padding: 8px;
+    margin: 0 8px;
+
+    @media #{$medium-up} {
+      padding: 8px 0;
+      margin: 0;
+    }
+  }
+
+  &__branding img {
+    height: 100%;
+    width: auto;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    min-width: 100%;
+
+    &__burger {
+      width: 3rem;
+      height: 3rem;
+      padding: 0;
+
+      &-icon {
+        font-size: 3rem;
+        color: $secondary-color;
+        width: inherit;
+        height: inherit;
+      }
+    }
+
+    &__logo {
+      max-width: 110px;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+  }
+
+  &__center {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  &__active-option {
+    border-bottom-color: $secondary-color !important;
+  }
+}
+
+.language {
+  &__text {
+    align-items: center;
+    display: flex;
+  }
+
+  &__dropdown {
+    box-shadow: none !important;
+  }
+
+  &__display-icon {
+    height: unset;
+  }
+}
+
+.user-info:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.mat-mdc-extended-fab {
+  padding: 0;
+  @media #{$medium-up} {
+    padding: 0 20px;
+  }
+}
+
+.footer-title {
+  font-size: 12px !important;
+  line-height: 1;
+  font-weight: 500;
+}
+
+:host ::ng-deep .footer-space > .mdc-button__label {
+  font-size: initial !important;
+}
+
+:host ::ng-deep .btn-qr > .mat-ripple {
+  display: none !important;
+}
+
+:host ::ng-deep .btn-qr > .mat-mdc-button-persistent-ripple {
+  display: none !important;
+}
+
+.btn-qa-container {
+  background: $primary-color;
+  padding: 10px 13px;
+  border-radius: 50%;
+  margin-top: -55px;
+}

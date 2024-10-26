@@ -1,0 +1,205 @@
+@import '../../global.scss';
+
+.auth {
+  &__background {
+    display: none;
+    @media #{$medium-up} {
+      display: block;
+      height: 100vh;
+    }
+  }
+
+  &__form {
+    padding: 1rem 0;
+    @media #{$medium-up} {
+      padding-inline: 2rem;
+    }
+  }
+
+  &__menu {
+    margin-top: 30px;
+
+    button {
+      box-shadow: none;
+    }
+  }
+}
+
+
+.launcher {
+  &__main-content {
+    height: 100vh;
+    overflow: auto;
+    width: 100%;
+    //background: $uteg-bg-color url('../../assets/images/background.webp') center/cover no-repeat;
+    background: $uteg-bg-color;
+    @media #{$medium-up} {
+      background: none;
+      width: 500px;
+    }
+  }
+
+  &__background {
+    flex: 1;
+    padding: 0;
+    //background: $uteg-bg-color url('../../assets/images/background.webp') center/cover no-repeat;
+    background: $uteg-bg-color;
+  }
+
+  &__card {
+    font-family: sans-serif;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    border-radius: 10px;
+    background-color: #ffff;
+    padding: 1.8rem;
+    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    margin: 0 0 20px;
+  }
+
+  &__subtitle {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  &__circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    background-color: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
+
+  &__options {
+    display: flex;
+  }
+
+  &__logo {
+    width: 250px;
+    margin: 80px auto;
+    display: block;
+  }
+
+  &__btn {
+    background-color: #c21d2b;
+    color: white;
+    padding: 18px 20px;
+    margin: 20px 5px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  @media only screen and (max-width: 950px) {
+    &__main-content {
+      height: 100vh;
+      overflow: auto;
+      width: 100%;
+      background: rgb(35, 31, 32);
+      background: linear-gradient(60deg, rgba(35, 31, 32, 1) 34%, rgba(74, 74, 74, 1) 100%);
+    }
+  }
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  @media #{$medium-up} {
+    padding: 0;
+  }
+}
+
+.topbar__left__burger {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+
+  @media #{$medium-up} {
+    background: transparent;
+  }
+
+
+  &-icon {
+    font-size: 3rem;
+    color: $primary-color;
+    width: inherit;
+    height: inherit;
+    @media #{$medium-up} {
+      color: $secondary-color;
+    }
+  }
+}
+
+.menu {
+  &-button {
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 16px;
+
+    mat-icon {
+      margin-right: 20px;
+      font-size: 32px;
+      height: 49px;
+      width: 32px;
+    }
+
+    i {
+      margin-right: 12px;
+      font-size: 32px;
+      width: 32px;
+    }
+  }
+
+  &-icon {
+    width: 34px;
+  }
+
+  &-footer-icon {
+    margin: 0 !important;
+    height: initial !important;
+    width: 30px !important;
+  }
+
+  :host ::ng-deep &-footer-active > .mat-icon > svg > * {
+    fill: $primary-color !important;
+    stroke: $primary-color !important;
+  }
+
+  :host ::ng-deep &-footer-active > .mat-icon > svg > * > * {
+    fill: $primary-color !important;
+    stroke: $primary-color !important;
+  }
+
+  :host ::ng-deep &-footer-active > .mat-icon > svg > * > * > * {
+    fill: $primary-color !important;
+    stroke: $primary-color !important;
+  }
+
+  :host ::ng-deep &-footer-active > p {
+    color: $primary-color !important;
+  }
+}
+
+:host ::ng-deep span.mdc-button__label {
+  display: flex !important;
+  align-items: center !important;
+  text-transform: none;
+  color: $secondary-color;
+}

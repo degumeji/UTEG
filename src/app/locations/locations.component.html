@@ -1,0 +1,93 @@
+<div class="locations">
+  <div class="locations__map d-md-block d-none">
+    <span class="locations__permission-message" *ngIf="showGeolocationMessage">
+      <mat-icon aria-hidden="false" aria-label="Location Permission alert icon" fontIcon="warning"></mat-icon>
+      {{ 'locales_view.geolocation_denied_msg' | translate }}
+    </span>
+    <google-map width="100%" [center]="center" [zoom]="zoom" [options]="mapOptions" (mapClick)="click($event)">
+      <map-marker
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        [options]="marker.options"></map-marker>
+    </google-map>
+  </div>
+  <div class="locations__outlets">
+    <div class="locations__detail">
+      <div class="mb-4" *ngFor="let item of places; let last = last">
+        <div class="locations__detail-card" (click)="showOnMap(item.latitude, item.longitude)">
+          <ul class="list-unstyled text-secondary">
+            <li class="d-flex">
+              <i class="mdi mdi-map-marker mr-1"></i>
+              <p>{{ item.distance }} km</p>
+            </li>
+            <li class="d-flex">
+              <h5 class="locations__detail-card__name">{{ item.name }}</h5>
+            </li>
+            <li class="d-flex">
+              <i class="mdi mdi-map"></i>
+              <p>{{ item.address_line_1 }}</p>
+            </li>
+            <li class="d-flex locations__detail-card__information">
+              <i class="mdi mdi-clock-outline"></i>
+              <p class="me-1">
+                {{ item.store_hours.is_open ? ('locales_view.open' | translate) : ('locales_view.close' | translate) }}
+              </p>
+              <p>
+                {{ item.store_hours.is_open ? ('locales_view.until' | translate) : ('locales_view.opensat' | translate) }}
+                {{ item.store_hours.is_open ? getUntilTime(item.store_hours.data) : getOpensAt(item.store_hours.data) }}
+              </p>
+            </li>
+          </ul>
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <span *ngIf="item.vendor_attribute[0].show_on_list"
+                  class="btn-uteg--outlined locations__detail__order-online btn"
+                  role="button"
+                  (click)="openIframe(item.vendor_attribute[0].link)">
+               <mat-icon style="padding-top: 2px" [svgIcon]="'icon-order-online'"></mat-icon>
+              {{ 'locales_view.order_online' | translate }}
+          </span>
+            <button class="btn btn-link card__button-link" type="button" data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#collapse'+item.id" aria-expanded="false"
+                    aria-controls="'collapse'+item.id">
+              {{ 'transactions_view.details' | translate }}
+            </button>
+          </div>
+
+          <div class="collapse" [id]="'collapse'+item.id">
+            <div class="card card-body">
+              <p>{{ 'locales_view.hour' | translate }}</p>
+              <ul class="list-unstyled text-secondary locations__detail-card__hours">
+                <li class="d-flex mb-1" *ngFor="let store_hour of item.store_hours.data">
+                  <p>{{ getDate(store_hour) }}</p>
+                  <span class="locations__detail-card__hours-divider"></span>
+                  <div>
+                    <span>{{ getTime(store_hour.start_time) }} - {{ getTime(store_hour.end_time) }}</span>
+                  </div>
+                </li>
+              </ul>
+              <button class="btn btn-link card__button-link"
+                      (click)="goToMap(item.latitude, item.longitude)">{{ 'locales_view.go_to_map' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <mat-divider class="my-5" role="separator" *ngIf="!last"></mat-divider>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type ="ball-spin-clockwise" [fullScreen]="true"><p style="color: white" >{{ 'loading' | translate }}</p></ngx-spinner> -->
+
+<div id="c-order-modal" #modal>
+  <div id="c-order-modal-content" #modalContent>
+    <span class="c-order-modal-close" #modalClose (click)="closeIframe()">CLOSE <i>×</i></span>
+    <iframe id="c-order-iframe" #orderIframe (load)="iframeLoaded()"></iframe>
+  </div>
+  <div id="c-order-loading-wrapper" #loadingWrapper>
+    <div class="c-order-loading" #orderLoading></div>
+  </div>
+</div>

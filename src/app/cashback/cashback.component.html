@@ -1,0 +1,61 @@
+<div class="card card-default">
+  <div class="card-body d-flex flex-wrap justify-content-center align-items-center">
+    <div class="col-12 col-md-6 d-md-none">
+      <div class="open-close-container">
+        <img [src]="imagePath" class="barcode">
+        <p class="barcode-token mt-3">{{ barcodeToken }}</p>
+        <div class="cashback__wallet" *ngIf="showWalletButton">
+          <button class="cashback__wallet-button {{downloadWalletClass}}"
+                  (click)="downloadWallet()"></button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- <div class="col-12 d-flex">
+      <div class="row w-100">
+        <div class="card-body pt-5 text-center d-flex m-auto">
+          <div class="m-auto">
+            <h4 class="card-body--title">{{ 'cashback_view.title' | translate }}</h4> -->
+            <!--         <p class="mt-4">{{ 'cashback_view.msg' | translate }}</p>-->
+            <!-- <h2>{{ points }}</h2>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- ><div class="col-12">
+      <mat-divider></mat-divider>
+    </div> -->
+    <div class="col-12 d-flex mt-3">
+      <ng-container>
+        <div *ngFor="let reward of rewards" class="mb-3 w-100 rewards">
+          <div
+            class="d-flex flex-column justify-content-between align-items-center my-3 rewards__header">
+            <!--     <span *ngIf="reward.available > 0" class="rewards__header__available">
+                  {{ reward.available }} {{ "cashback_view.available" | translate }}
+                   </span>-->
+                   
+            <h4 class="card-body--title">{{ 'cashback_view.title' | translate }}</h4>
+
+            <h1 class="rewards__header__progress">{{ reward.progress }}</h1>
+            <p class="rewards__header__progress-text"
+               [innerHtml]="'cashback_view.progress_text' | translate: { leftPoints: reward.maxValue - reward.progress }"></p>
+          </div>
+          <div class="d-flex align-items-center mb-4">
+            <div class="progress w-100">
+              <div class="progress-bar text-bg-color" role="progressbar" aria-label="progress-bar" aria-valuemin="0"
+                   [attr.aria-valuenow]="reward.valueNow"
+                   [attr.aria-valuemax]="reward.maxValue"
+                   [style.width]="reward.valueNow + '%'">
+              </div>
+            </div>
+            <p class="ms-3 rewards__maxvalue">{{ reward.maxValue }}pts</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+  style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>

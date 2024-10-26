@@ -1,0 +1,25 @@
+@import '../../global.scss';
+
+.history {
+  &__paginator {
+    background: transparent;
+    .mat-mdc-icon-button {
+       & .mat-mdc-paginator-icon {
+        fill: $text-color;
+      }
+      &[disabled] .mat-mdc-paginator-icon {
+        fill: $tertiary-color;
+      }
+    }
+    .mat-mdc-paginator-range-actions {
+      justify-content: space-between;
+      width: 100%;
+
+      @media #{$medium-up} {
+        justify-content: flex-end;
+        display: flex;
+
+      }
+    }
+  }
+}

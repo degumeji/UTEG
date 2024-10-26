@@ -1,0 +1,85 @@
+<div class="auth">
+  <div class="logo-row">
+    <div class="col-sm-12 logo-position">
+      <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"/>
+    </div>
+  </div>
+  <div class="auth__card auth__login">
+    <form>
+      <div class="container-fluid">
+        <h2 class="auth__title">{{ 'enter_code' | translate }}</h2>
+        <div *ngIf="enterCodeView">
+          <div class="auth__form mb-2">
+            <mat-form-field class="w-100 m-intern-input">
+              <mat-label class="break-label-text"><b>{{ 'view_alerts.activate' | translate }}</b></mat-label>
+              <input matInput type="text" placeholder="" name="digitos" #digitosInput="ngModel"
+                     [(ngModel)]="digitos" required>
+              <mat-error *ngIf="digitosInput.errors?.['required']">
+                {{ 'forms_errors.token.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <button class="auth__continue btn-uteg-secondary" [disabled]="digitos.length!=6"
+                  (click)="onValidateCode()">
+            {{ 'send' | translate }}
+          </button>
+          <div class="mt-4" id="resend-email">
+            <div class="col-sm-12">
+              <a class="mdl-js-button text-center" href="javascript:void(0);" (click)="onResend()">
+                {{ getResendAction() | translate }}
+              </a>
+            </div>
+            <div class="col-sm-12 mt-3" *ngIf="verificationMethod.toLowerCase() === 'sms'">
+              <a class="mdl-js-button text-center" href="javascript:void(0);" (click)="toggleView()">
+                {{ 'edit_phone' | translate }}
+              </a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="enterPhoneView" class="auth__login">
+          <div class="input-group mb-1">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">+ ( {{ phoneCode }} )
+            </button>
+            <ul class="dropdown-menu">
+              <input type="text" placeholder="{{'search' | translate}}" id="myInput" (keyup)="filterFunction($event)"
+                     style="width: 100%;">
+              <li><a class="dropdown-item" href="javascript:void(0);" (click)="onCountryCodeSelected(country)"
+                     *ngFor="let country of filteredCountries">+ ( {{ country.phone_code }} ) {{ country.name }}</a>
+              </li>
+            </ul>
+            <input type="text" class="form-control" name="phone" #phoneNumberInput="ngModel" required
+                   [(ngModel)]="phoneNumber" (input)="onPhoneNumberChange($event)">
+          </div>
+          <div class="mb-4">
+            <mat-error *ngIf="phoneNumberInput.touched && phoneNumberInput.errors?.['required']">
+              {{ 'forms_errors.phone_number.required' | translate }}
+            </mat-error>
+            <mat-error class="mt-1 mb-1" *ngIf="!isValidPhoneNumber && showInvalidPhoneNumberAlert">
+              {{ 'view_alerts.phone_format' | translate }}
+            </mat-error>
+            <mat-error class="my-1" *ngIf="isPhoneNumberExists">
+              {{ 'view_alerts.invalid_phone' | translate }}
+            </mat-error>
+            <mat-error class="my-1" *ngIf="alertPhoneNumber">
+              {{ alertPhoneNumber }}
+            </mat-error>
+          </div>
+          <button class="auth__continue btn-uteg-secondary"
+                  [disabled]="!isValidPhoneNumber || isPhoneNumberExists"
+                  (click)="toggleView()">
+            {{ getResendAction() | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type ="ball-spin-clockwise" [fullScreen]="true"><p style="color: white" >{{ 'loading' | translate }}</p></ngx-spinner> -->
+</div>
+
+<app-modal id="modal-generic">
+  <div class="card-body">
+    <p>{{ genericMsg }}</p>
+  </div>
+  <button class="app-modal-btn" (click)="closeModal('modal-generic');">{{ 'close_btn' | translate }}</button>
+</app-modal>

@@ -1,0 +1,79 @@
+<div class="auth">
+  <div class="logo-row">
+    <div class="col-sm-12 logo-position">
+      <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+      />
+    </div>
+  </div>
+
+  <div class="auth__login" *ngIf="viewStep0">
+    <form>
+      <h4 class="auth__title">{{ 'checkin_view.opt0' | translate }}</h4>
+      <div class="auth-buttons">
+        <div class="col-sm-12 mt-4">
+          <button class="mdl-button mdl-js-button mdl-button--raised" (click)="goToCheckin()">
+            {{ 'checkin_view.btn0_2' | translate }}
+          </button>
+          <a class="mdl-button mdl-js-button text-center text-uppercase" href="javascript:void(0);"
+             (click)="goToPay(url)">{{ 'checkin_view.btn0_1' | translate }}</a>
+          <a class="mdl-button mdl-js-button text-center text-uppercase mt-4" href="javascript:void(0);"
+             (click)="goToHome()">{{ 'view_alerts.go_home' | translate }}</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep1">
+    <form>
+      <h6 class="auth__title">{{ 'checkin_view.opt1' | translate }}</h6>
+      <div class="auth-buttons">
+        <div class="col-sm-12">
+          <a class="mdl-button mdl-js-button text-center text-uppercase"
+             routerLink="/register" routerLinkActive="active">{{ 'login_sttl2' | translate }}</a>
+          <button class="mdl-button mdl-js-button mdl-button--raised" routerLink="/login">
+            {{ 'login_btn' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep2">
+    <form>
+      <h3 class="mt-4">{{ 'checkin_view.opt2' | translate }}</h3>
+      <h6 class="mt-4">{{ 'checkin_view.opt2_1' | translate }}</h6>
+      <button class="auth__continue mt-4" (click)="startCheckin()"
+              [disabled]="isLoading">{{ 'checkin_view.btn1' | translate }}
+      </button>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep3">
+    <form>
+      <h4 class="mt-4">{{ 'checkin_view.opt3' | translate }}</h4>
+      <div class="list-group mt-4">
+        <button type="button" class="list-group-item list-group-item-action"
+                [class.active]="selectedPayMethodIndex === i"
+                (click)="onSelectPaymentMethod(item,i)"
+                *ngFor="let item of paymentMethods; let i = index">{{ item | translate }}
+        </button>
+      </div>
+      <div *ngIf="rewards.length > 0">
+        <h5 class="mt-4">{{ 'checkin_view.opt4' | translate }}</h5>
+        <div class="list-group list-group__rewards mt-4">
+          <button type="button" class="list-group-item list-group-item-action"
+                  [class.active]="selectedRewardIndex === i"
+                  (click)="onSelectReward(reward.id,i)"
+                  *ngFor="let reward of rewards; let i = index">{{ reward.name }}
+          </button>
+        </div>
+      </div>
+      <button class="auth__continue mt-4" (click)="onCheckin()"
+              [disabled]="isLoading">{{ 'checkin_view.btn2' | translate }}
+      </button>
+    </form>
+  </div>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+    style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>

@@ -1,0 +1,172 @@
+<div class="row">
+  <div class="col-xl-6 m-auto">
+    <div class="card card-default">
+      <div class="col">
+        <button mat-mini-fab color="primary" style="border-radius: 0;"
+                class="text-black no-bg" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <div class="card-default" *ngIf="!showAddCardView">
+        <div class="card-header py-2">
+          <h2>{{ 'reload_view.add_reload' | translate }}</h2>
+        </div>
+
+        <div class="card-body">
+          <h6 class="mt-4">{{ 'reload_view.amount' | translate }}</h6>
+          <div class="row mb-4">
+            <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+              <button type="button" class="btn btn-light pe-4 w-100"
+                      [ngClass]="{ 'reload-value__active-option': value === 200 }"
+                      (click)="valueSelected(200)">
+                $200
+              </button>
+            </div>
+            <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+              <button type="button" class="btn btn-light pe-4 w-100"
+                      [ngClass]="{ 'reload-value__active-option': value === 400 }"
+                      (click)="valueSelected(400)">
+                $400
+              </button>
+            </div>
+            <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+              <button type="button" class="btn btn-light pe-4 w-100"
+                      [ngClass]="{ 'reload-value__active-option': value === 600 }"
+                      (click)="valueSelected(600)">
+                $600
+              </button>
+            </div>
+            <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+              <button type="button" class="btn btn-light pe-4 w-100"
+                      [ngClass]="{ 'reload-value__active-option': value === 800 }"
+                      (click)="valueSelected(800)">
+                $800
+              </button>
+            </div>
+            <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+              <button type="button" class="btn btn-light w-100"
+                      [ngClass]="{ 'reload-value__active-option': showOtherView }"
+                      (click)="enableCustomValue()">
+                {{ 'egift_view.other' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="showOtherView">
+            <div class="d-flex mb-4">
+              <label class="mt-4 me-2">$ </label>
+              <input type="number" class="form-control" [(ngModel)]="value">
+              <button type="button" class="btn btn-outline-secondary ms-2 btn-pill"
+                      (click)="onCustomValueNext()">{{ 'next' | translate }}
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="showPaymentView">
+            <div>
+              <p class="mt-4">{{ 'reload_view.amount' | translate }} $ {{ value }}</p>
+            </div>
+
+            <div *ngIf="!showSelectedCc">
+              <div class="list-group mt-4">
+                <button type="button" class="list-group-item list-group-item-action"
+                        [class.active]="selectedPayMethodIndex === i"
+                        (click)="onCcSelected(i,item)" *ngFor="let item of ccList; let i = index">{{ item.card }}
+                </button>
+              </div>
+
+              <div class="form-group mt-4">
+                <button class="btn btn-link card__button-link"
+                        (click)="onShowAddCardView()">{{ 'prepaid_view.btn1' | translate }}
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="showSelectedCc">
+              <div class="row mt-4">
+                <p>{{ 'reload_view.card' | translate }} {{ cc_selected }}</p>
+                <button class="btn btn-link card__button-link d-flex justify-content-end justify-content-sm-start ms-2"
+                        (click)="onBackToPaymentView()">
+                  ( {{ 'prepaid_view.addcard_btn3' | translate }} )
+                </button>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-dark mt-4" [disabled]="value==0 || value==null ||  cc_id==null"
+                        (click)="onReload()">{{ 'reload_view.btn_complete' | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body pt-0" *ngIf="showAddCardView">
+        <h6 class="mt-4">{{ 'cards_view.msg' | translate }}</h6>
+
+        <form>
+          <div class="form-group mb-4">
+            <label for="cc_name" style="color:black;">{{ 'egift_view.form.cc_name' | translate }}</label>
+            <input type="text" class="form-control" name="cc_name" [(ngModel)]="cc_name">
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="cc_number" style="color:black;">{{ 'egift_view.form.cc_number' | translate }}</label>
+            <input type="tel" class="form-control" name="cc_number" [(ngModel)]="cc_number"
+                   (input)="onlyNumbersInput($event, cc_number)">
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-6 col-sm-4 mt-4 mt-sm-0">
+              <div class="form-group">
+                <label class="text-black" for="cc_cvc">{{ 'egift_view.form.cc_cvc' | translate }}</label>
+                <input type="tel" class="form-control" name="cc_cvc" [(ngModel)]="cc_cvc"
+                       (input)="onlyNumbersInput($event, cc_cvc)" maxlength="4">
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <label class="text-black">{{ 'egift_view.form.cc_exp' | translate }}</label>
+              <div class="d-flex gap-2">
+                <div class="form-group">
+                  <input type="tel" class="form-control" placeholder="MM" name="cc_exp_mm" [(ngModel)]="cc_exp_mm"
+                         (input)="onlyNumbersInput($event, cc_exp_mm)" maxlength="2">
+                </div>
+                <div class="form-group">
+                  <input type="tel" class="form-control" placeholder="YYYY" name="cc_exp_yy"
+                         [(ngModel)]="cc_exp_yy" (input)="onlyNumbersInput($event, cc_exp_yy)" maxlength="4">
+                </div>
+              </div>
+            </div>            
+          </div>
+
+          <!--div class="form-group mb-4 mt-4">
+            <div class="text-black">
+              To prevent fraud, a $1 charge is made, and inmediately refunded when adding a credit card. You may temporarily see this change on your statement.
+            </div>
+          </div-->
+
+          <label class="text-black mt-4 mb-4">{{ 'cards_view.msg2' | translate }}</label>
+
+          <div class="form-group mb-4">
+            <label for="cc_postalcode" style="color: black;">{{ 'egift_view.form.cc_postal_code' | translate }}</label>
+            <input type="text" class="form-control" name="cc_postalcode" [(ngModel)]="cc_postalcode">
+          </div>
+
+          <div class="d-flex justify-content-end mt-6">
+            <!--button type="submit" class="btn btn-outline-secondary mb-2 btn-pill"
+                    (click)="onSaveCC()" *ngIf="!showCardsList">{{ 'prepaid_view.addcard_btn1' | translate }}
+            </button-->
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill"
+                    (click)="onSaveCC()">{{ 'prepaid_view.addcard_btn1' | translate }}
+            </button>
+            <button type="submit" class="btn btn-outline-secondary mb-2 ms-2 btn-pill"
+                    (click)="onHideAddCardView()">{{ 'prepaid_view.addcard_btn2' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+    style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>

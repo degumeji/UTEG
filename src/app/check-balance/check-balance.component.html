@@ -1,0 +1,41 @@
+<div class="row mt-3">
+  <div class="col-md-8 col-lg-7 m-auto">
+    <div class="card card-default">
+      <div class="card-body">
+        <h1>{{ 'check_balance.title'|translate }}</h1>
+        <p>{{ 'check_balance.subtitle'|translate }}</p>
+        <div class="check-balance mt-5 mb-3 rounded-2">
+          <mat-form-field class="check-balance__card w-100">
+            <mat-label>{{ 'check_balance.card_input_label' | translate }}</mat-label>
+            <input type="text" matInput placeholder="" name="cardNumber" [formControl]="cardNumberFormControl" required>
+            <mat-error *ngIf="cardNumberFormControl.errors?.['required']">
+              {{ 'check_balance.card_input_errors.required' | translate }}
+            </mat-error>
+            <mat-error *ngIf="cardNumberFormControl.errors?.['pattern']">
+              {{ 'check_balance.card_input_errors.pattern' | translate }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="check-balance__card w-100">
+            <mat-label>{{ 'check_balance.pin_input_label' | translate }}</mat-label>
+            <input type="phone" matInput placeholder="" name="cardPin" [formControl]="cardPinFormControl"
+                   (keydown)="notAllowSigns($event)">
+            <mat-error *ngIf="cardPinFormControl.errors?.['pattern']">
+              {{ 'check_balance.card_input_errors.pattern' | translate }}
+            </mat-error>
+          </mat-form-field>
+          <div class="check-balance__result">
+            <h4>{{ 'check_balance.result_message' | translate }}
+              <span>$ {{ balance != undefined ? balance : '---' }}</span></h4>
+          </div>
+
+          <button
+            class="check-balance__button w-100 mdl-button mdl-js-button mdl-button--raised btn-uteg-secondary"
+            [disabled]="!cardNumberFormControl.valid"
+            (click)="onCheckBalance()">
+            {{ 'check_balance.check_balance_button' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

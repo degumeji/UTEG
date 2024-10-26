@@ -1,0 +1,40 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .montserrat-bold;
+  color: #3a362e;
+  letter-spacing: 1px;
+}
+
+button,
+a {
+  @extend .montserrat-bold;
+  letter-spacing: 1px;
+}
+
+a {
+  color: $secondary-color;
+}
+
+body,
+input {
+  @extend .montserrat-medium;
+  color: $secondary-color;
+}
+
+p {
+  font-size: 1rem;
+  color: #3a362e;
+}
+
+mat-hint,
+mat-hint * {
+  font-size: 0.875rem;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: black;
+}

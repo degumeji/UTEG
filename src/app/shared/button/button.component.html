@@ -1,0 +1,18 @@
+<ng-container *ngIf="eventName !== 'onExportCard'; else exportCard">
+  <button class="btn" [style.background]="backgroundColor" (click)="click()">
+
+    <span>{{text}}</span>
+  </button>
+</ng-container>
+
+<ng-template #exportCard>
+  <a [href]="hrefUrl" class="btn" [style.background]="backgroundColor" target="_blank">
+    <ng-container *ngIf="iconType === 'image'; else textIcon">
+      <img [src]="icon" alt="icon" *ngIf="icon" style="width: 25px !important; height: 20px !important;" />
+    </ng-container>
+    <ng-template #textIcon>
+      <span>{{icon}}</span>
+    </ng-template>
+    <span>{{text}}</span>
+  </a>
+</ng-template>

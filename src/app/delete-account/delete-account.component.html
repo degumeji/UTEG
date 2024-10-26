@@ -1,0 +1,16 @@
+<section class="delete-account">
+  <div class="delete-account__container">
+    <h2>Delete Account</h2>
+    <mat-divider class="mt-2 mb-4"></mat-divider>
+    <p>Are you sure you want to delete this account?<br>
+      <strong>We will delete all your customer information, this cannot be un-done</strong></p>
+    <div class="delete-account__container__buttons">
+      <button type="submit" class="btn btn-uteg-primary"
+              (click)="deleteAccount()">Delete Account
+      </button>
+      <button type="submit" class="btn btn-uteg-secondary"
+              (click)="goHome()">Cancel
+      </button>
+    </div>
+  </div>
+</section>

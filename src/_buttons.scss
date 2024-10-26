@@ -1,0 +1,77 @@
+.btn-uteg {
+  @extend .montserrat-bold;
+  color: #fff;
+  background-color: $secondary-color;
+  border-radius: 0;
+  padding: 12px !important;
+  min-width: 90px;
+  transition: all ease-in-out .2s;
+
+  &:hover, &:active {
+    background-color: adjust-color($secondary-color, $lightness: -5%);
+    color: #fff;
+  }
+
+  &--outlined {
+    @extend .btn-uteg;
+    border: 2px solid $secondary-color;
+    background-color: $primary-color;
+    color: $secondary-color;
+    text-transform: uppercase;
+
+    &:is(a) {
+      display: block;
+      text-align: center;
+      width: fit-content;
+      text-decoration: none;
+    }
+
+    &:hover, &:active {
+      color: $secondary-color;
+      background-color: adjust-color($primary-color, $lightness: -10%);
+    }
+  }
+}
+
+.btn-uteg-secondary {
+  @extend .btn-uteg;
+  color: $secondary-color;
+  background-color: transparent;
+  border: 1px solid $secondary-color;
+
+  &:hover,
+  &:active {
+    background-color: $secondary-color;
+    color: #fff;
+  }
+
+  &:disabled {
+    background-color: #c4c4c4 !important;
+    color: #7e7e7e !important;
+  }
+}
+
+.btn-uteg:disabled {
+  background-color: #c4c4c4 !important;
+  color: #7e7e7e !important;
+}
+
+.btn-border-black, .btn-border-black:hover {
+  border-style: solid !important;
+  border-width: 3px !important;
+  border-color: #000 !important;
+}
+
+.btn-link {
+  color: $secondary-color;
+  text-transform: unset;
+  font-weight: bold;
+  text-underline-offset: 3px;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    color: adjust-color($secondary-color, $lightness: -5%) !important;
+  }
+}

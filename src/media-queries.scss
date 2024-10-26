@@ -1,0 +1,10 @@
+
+$screen: 'only screen' !default;
+$xxsmall-up: '#{$screen} and (min-width: #{$xxsmall})';
+$xsmall-up: '#{$screen} and (min-width: #{$xsmall})';
+$small-up: '#{$screen} and (min-width: #{$small})';
+$medium-up: '#{$screen} and (min-width: #{$medium})';
+$large-up: '#{$screen} and (min-width: #{$large})';
+$large-up-landscape: '#{$screen} and (min-width: #{$large}) and (orientation: landscape)';
+$xlarge-up: '#{$screen} and (min-width: #{$xlarge})';
+$xxxlarge-up: '#{$screen} and (min-width: #{$xxxlarge})';

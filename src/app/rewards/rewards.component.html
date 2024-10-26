@@ -1,0 +1,40 @@
+<div class="card card-default">
+  <div class="card-header pb-0">
+    <h2>{{ 'coupons_view.title' | translate }}</h2>
+  </div>
+  <div class="card-body py-3">
+    <p class="text-black">
+      {{ 'coupons_view.sub_title' | translate }}
+    </p>
+  </div>
+  <div class="card-body pt-4" *ngIf="!isError">
+    <mat-paginator *ngIf="!disabledPaginator"
+                   (page)="handlePageEvent($event)"
+                   [length]="paginator.total!"
+                   [pageSize]="paginator.limit"
+                   [showFirstLastButtons]="false"
+                   [hidePageSize]="true"
+                   [pageIndex]="paginator.page"
+                   [disabled]="disabledPaginator"
+                   class="no-bg">
+    </mat-paginator>
+    <div class="row">
+      <div class="col-md-6 col-lg-4 col-xl-4" *ngFor="let item of coupons">
+        <div class="card mb-4">
+          <p style="text-align: end; padding-top: 10px; padding-right: 10px;">
+            {{ item.available }}
+          </p>
+          <img [src]="item.imagen ? item.imagen : defaultImg" class="coupon__img">
+          <h5 class="pt-4 ps-4">{{ item.name }}</h5>
+          <p class="pb-4 ps-4">{{ item.legales }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body text-center" *ngIf="isError">
+    <h6>{{ 'coupons_view.empty_title' | translate }}</h6>
+    <p>{{ 'coupons_view.empty_subtitle' | translate }}</p>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+  style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>

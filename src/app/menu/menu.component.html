@@ -1,0 +1,108 @@
+<mat-sidenav-container class="menu-background">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z4">
+    <!-- <div class="nav-bar__header w-100 cursor-pointer"
+          *ngIf="cookieService.get('accesstoken')">
+       <div class="topbar__left row text-break" routerLink="/loyalty/profile">
+         <h4 class="mt-0 mb-1 pt-2 pe-0"> {{ cookieService.get('firstName') }} {{ cookieService.get('lastName') }}</h4>
+         <p class="mt-0 mb-0 pe-0"> {{ cookieService.get('email') }} </p>
+       </div>
+       <div class="topbar__right">
+         <div *ngIf="displayMenuIcon">
+           <button mat-icon-button (click)="sidenav.toggle()">
+             <mat-icon *ngIf="sidenav.opened"> close</mat-icon>
+           </button>
+         </div>
+       </div>
+     </div>
+     <mat-divider class="m-3"></mat-divider>-->
+    <div class="topbar__right">
+      <div *ngIf="displayMenuIcon">
+        <button mat-icon-button class="text-black" (click)="sidenav.toggle()">
+          <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="w-100 ps-2">
+      <div *ngFor="let menuItem of menuItems;">
+        <button *ngIf="menuItem.name !== 'home'"
+                mat-button class="menu-button text-start h-100"
+                (click)="menuItem.name ==='logout' ? onLogout() : displayComponent(menuItem.path)"
+                [ngClass]="{
+                  'menu-button-active': menuItem.subPaths.indexOf(router.url) >= 0
+                }">
+          <i *ngIf="menuItem.name !== 'locations'" [ngClass]="['mdi', 'mdi-' + menuItem.icon]"></i>
+          <mat-icon *ngIf="menuItem.name === 'locations'" [svgIcon]="menuItem.icon"></mat-icon>
+          <span>{{ "menu_items." + menuItem.name | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <div class="topbar__left align-center py-3 {{displayMenuIcon ? 'd-flex' : 'd-none'}}">
+        <div *ngIf="displayMenuIcon">
+          <button mat-icon-button class="topbar__left__burger" (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!sidenav.opened" class="topbar__left__burger-icon"> menu</mat-icon>
+          </button>
+        </div>
+        <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+             class="topbar__left__logo"/>
+      </div>
+      <div class="topbar__center">
+        <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+             class="topbar__left__logo" *ngIf="!displayMenuIcon"/>
+        <div class="nav-bar align-center py-lg-2" *ngIf="!displayMenuIcon">
+          <div class="row options-container" *ngFor="let menuItem of menuItems;" style="width: auto !important;">
+            <button
+              *ngIf="menuItem.name !== 'home'"
+              mat-button
+              [class]="menuItem.name ==='logout' ? 'nav-bar__button nav-bar__button-outlined' : 'nav-bar__button'"
+              (click)="menuItem.name ==='logout' ? onLogout() : displayComponent(menuItem.path)"
+              [ngClass]="{
+                'topbar__active-option': menuItem.subPaths.indexOf(router.url) >= 0
+              }"
+              routerLinkActive="topbar__active-option">
+              <span>{{ "menu_items." + menuItem.name | translate }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar>
+    <div class="no-bg" [ngClass]="router.url.includes('/loyalty/orders') ? '' : 'content'">
+      <div [ngClass]="router.url.includes('/loyalty/orders') ? '' : 'mb-5'">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="nav-bar__floating-button" *ngIf="cookieService.get('accesstoken')">
+        <button mat-button class="footer-space"
+                [ngClass]="menuItem.name === 'locations' ? 'footer-space btn-qr' : 'footer-space'"
+                *ngFor="let menuItem of floatingMenuItems;"
+                (click)="displayComponent(menuItem.path)">
+          <div [ngClass]="{'menu-footer-active': menuItem.subPaths.indexOf(router.url) >= 0}"
+               *ngIf="menuItem.name !== 'locations'">
+            <i [ngClass]="['mdi', 'mdi-' + menuItem.icon, 'mdi-24px']"></i>
+            <p class="my-0 footer-title text-capitalize">{{ "menu_items." + menuItem.name | translate }}</p>
+          </div>
+          <div *ngIf="menuItem.name === 'locations'" class="btn-qa-container">
+            <mat-icon style="padding-top: 2px" [svgIcon]="menuItem.icon"></mat-icon>
+          </div>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div class="modal fade" id="barCodeModal" tabindex="-1" aria-labelledby="genericModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="top: 5% !important;">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div *ngIf="barCodeImage">
+          <img alt="Barcode image" [src]="barCodeImage" style="width: 100%;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onCloseQrCodeModal()" data-bs-dismiss="modal">Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

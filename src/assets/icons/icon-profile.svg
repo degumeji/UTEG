@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180" height="167" viewBox="0 0 180 167">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_2" data-name="Rectángulo 2" width="180" height="167" transform="translate(-6782 6374)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="icon-profile" transform="translate(6782 -6374)" clip-path="url(#clip-path)">
+    <g id="Grupo_1" data-name="Grupo 1" transform="translate(-7419.879 6266.588)">
+      <circle id="Elipse_1" data-name="Elipse 1" cx="27.298" cy="27.298" r="27.298"
+              style="fill: none !important;"
+              transform="translate(700.581 124.082)"
+              stroke="#000000" stroke-miterlimit="10" stroke-width="8.5"/>
+      <rect id="Rectángulo_1" data-name="Rectángulo 1" width="92.131" height="57.738" rx="15.671"
+            transform="translate(681.813 200.005)"
+            style="fill: none !important;"
+            stroke="#000000" stroke-miterlimit="10" stroke-width="8.5"/>
+    </g>
+  </g>
+</svg>

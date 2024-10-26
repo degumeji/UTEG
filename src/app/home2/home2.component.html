@@ -1,0 +1,35 @@
+<div class="row no-gutters m-0">
+  <!--div class="home-screen">
+    
+  </!-div>
+  <div-- class="home-screen-second__background">
+    
+  </div-->
+  
+  <h2>
+    Bienvenido: {{ emailSite }}
+  </h2>
+
+  <div><button (click)="salir();">Salir</button></div>
+
+  <form (ngSubmit)="submitBooking($event)">
+    <label for="name">Name:</label>
+    <input id="name" [(ngModel)]="newBooking.name" name="name" required />
+  
+    <label for="date">Date:</label>
+    <input id="date" type="date" [(ngModel)]="newBooking.date" name="date" required />
+  
+    <button type="submit">Book</button>
+  </form>
+  
+  <h3>Agendamientos</h3>
+
+  <ul>
+    <li *ngFor="let booking of bookings">
+      {{ booking.name }} - {{ booking.date }}
+    </li>
+  </ul>
+
+</div>
+
+

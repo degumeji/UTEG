@@ -1,0 +1,229 @@
+<div class="auth">
+  <div class="logo-row">
+    <div class="col-sm-12 logo-position">
+      <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+      />
+    </div>
+  </div>
+  <div class="auth__login" *ngIf="viewStep1">
+    <form [formGroup]="registerForm">
+      <h5 class="auth__title">{{ 'view_alerts.msg1' | translate }}</h5>
+      <div class="auth__form">
+        <mat-form-field class="w-100">
+          <mat-label>{{ 'email' | translate }}</mat-label>
+          <input matInput type="text" placeholder="email@mail.com" name="email"
+                 [(ngModel)]="registerParams.email_address" (input)="onEmailChange($event)" required
+                 formControlName="email_address">
+          <div *ngIf="!registerForm.get('email_address')?.valid && registerForm.get('email_address')?.touched">
+            <mat-error *ngIf="registerForm.controls['email_address'].errors?.['required']">
+              {{ 'forms_errors.email.required' | translate }}
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls['email_address'].errors?.['pattern']">
+              {{ 'forms_errors.email.email' | translate }}
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="w-100" *ngIf="!isEmailExists">
+          <mat-label>{{ 'confirm_email' | translate }}</mat-label>
+          <input matInput type="text" placeholder="" name="confirmemail"
+                 [(ngModel)]="confirmEmail" (input)="onEmailConfirmChange($event)" required
+                 formControlName="confirmEmail">
+          <div *ngIf="!registerForm.get('confirmEmail')?.valid && registerForm.get('confirmEmail')?.touched">
+            <mat-error *ngIf="registerForm.controls['confirmEmail'].errors?.['required']">
+              {{ 'forms_errors.confirmEmail.required' | translate }}
+            </mat-error>
+          </div>
+        </mat-form-field>
+
+        <div>
+          <mat-error class="mt-1 mb-1" *ngIf="isEmailExists">
+            {{ 'view_alerts.reset' | translate }}
+            <span>
+              <a routerLink="/resetpass">
+                {{ 'view_alerts.reset1' | translate }}
+              </a>
+            </span>
+          </mat-error>
+          <mat-error class="my-1" *ngIf="isInvalidConfirmEmail && !isEmailExists">
+            {{ 'validate_email' | translate }}
+          </mat-error>
+          <mat-error class="my-1" *ngIf="isInvalidEmail && !isEmailExists">
+            {{ 'invalid_email' | translate }}
+          </mat-error>
+        </div>
+        <mat-form-field class="w-100">
+          <mat-label>{{ 'password' | translate }}</mat-label>
+          <input matInput type="password" placeholder="" name="psw" (input)="onPasswordChange($event)" required
+                 formControlName="password">
+          <div *ngIf="!registerForm.get('password')?.valid && registerForm.get('password')?.touched">
+            <mat-error *ngIf="registerForm.controls['password'].errors?.['required']">
+              {{ 'forms_errors.password.required' | translate }}
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <div class="errors-container" *ngIf="!isEmailExists">
+          <mat-error class="mt-1 mb-1" *ngIf="alertDigits">{{ alertDigits }}</mat-error>
+          <mat-error class="my-1" *ngIf="alertLowerCase">{{ alertLowerCase }}</mat-error>
+          <mat-error class="my-1" *ngIf="alertUpperCase">{{ alertUpperCase }}</mat-error>
+          <mat-error class="my-1" *ngIf="alertNumeric">{{ alertNumeric }}</mat-error>
+        </div>
+
+        <mat-form-field class="w-100" *ngIf="!isEmailExists">
+          <mat-label>{{ 'firstname' | translate }}</mat-label>
+          <input matInput type="text" placeholder="" formControlName="name" required>
+          <div *ngIf="!registerForm.get('name')?.valid && registerForm.get('name')?.touched">
+            <mat-error *ngIf="registerForm.controls['name'].errors?.['required']">
+              {{ 'forms_errors.first_name.required' | translate }}
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls['name'].errors?.['whitespace']">
+              {{ 'forms_errors.first_name.whitespace' | translate }}
+            </mat-error>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="w-100" *ngIf="!isEmailExists">
+          <mat-label>{{ 'lastname' | translate }}</mat-label>
+          <input matInput type="text" placeholder="" formControlName="lastname" required>
+          <div *ngIf="!registerForm.get('lastname')?.valid && registerForm.get('lastname')?.touched">
+            <mat-error *ngIf="registerForm.controls['lastname'].errors?.['required']">
+              {{ 'forms_errors.last_name.required' | translate }}
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls['lastname'].errors?.['whitespace']">
+              {{ 'forms_errors.last_name.whitespace' | translate }}
+            </mat-error>
+          </div>
+        </mat-form-field>
+      </div>
+      <button class="auth__continue btn-uteg-secondary" [disabled]="!isEmailExists ||
+      !registerParams.password"
+              (click)="onLogin()" *ngIf="isEmailExists">{{ 'login_btn' | translate }}
+      </button>
+    </form>
+    <div *ngIf="!isEmailExists">
+      <!--  <mat-form-field class="w-100">
+          <mat-label>{{ 'idnumber' | translate }}</mat-label>
+          <input matInput type="text" placeholder="" name="idnumber" #idnumber="ngModel"
+                 [(ngModel)]="registerParams.cedula"
+                 (ngModelChange)="this.cedulaUpdate.next($event)"
+                 (input)="onIdNumberChangeFormat($event)"
+                 [required]="isCedulaRequired"
+                 [maxlength]="10"
+                 (paste)="$event.preventDefault()"
+                 minlength="8">
+          <mat-error *ngIf="idnumber.errors?.['required']">
+            {{ 'forms_errors.idnumber.required' | translate }}
+          </mat-error>
+          <mat-error *ngIf="idnumber?.touched && idnumber?.errors?.['minlength']">
+            {{ 'forms_errors.idnumber.minlenght' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <div>
+          <p class="auth__form-alert" *ngIf="isIdNumberExists">{{ 'view_alerts.reset' | translate }}
+            <span><a href="#"> {{ 'view_alerts.reset1' | translate }}</a></span></p>
+          <p class="auth__form-alert" *ngIf="alertIdNumber">{{ alertIdNumber }}</p>
+        </div>-->
+
+      <mat-form-field class="w-100">
+        <mat-label>{{ 'birthday' | translate }}</mat-label>
+        <input matInput [matDatepicker]="birthdayPicker" [placeholder]="translate.instant('pick_date')"
+               [(ngModel)]="fechaSelected" (ngModelChange)="onPickDate($event)" readonly
+               (click)="birthdayPicker.open()" (focusin)="birthdayPicker.open()"
+               id="registerdatepicker" name="registerdatepicker">
+        <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+        <mat-datepicker startView="multi-year" #birthdayPicker></mat-datepicker>
+      </mat-form-field>
+      <div class="errors-container ps-0" *ngIf="fechaSelected">
+        <mat-error *ngIf="!isValidBirthdayDate">
+          {{ 'forms_errors.birthdate.legal_age' | translate }}
+        </mat-error>
+      </div>
+      <mat-form-field class="w-100" *ngIf="isGenderRequired">
+        <mat-label><b>{{ 'gender' | translate }}</b></mat-label>
+        <mat-select (selectionChange)="onGenderChange($event.value)">
+          <mat-option value="{{ 'genders.f' | translate }}">{{ 'genders.f' | translate }}</mat-option>
+          <mat-option value="{{ 'genders.m' | translate }}">{{ 'genders.m' | translate }}</mat-option>
+          <mat-option value="{{ 'genders.o' | translate }}">{{ 'genders.o' | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--    <mat-form-field class="w-100">
+            <mat-label>{{ 'address' | translate }}</mat-label>
+            <input matInput type="text" placeholder="" name="address" #addessInput="ngModel"
+                   [(ngModel)]="address" required>
+            <mat-error *ngIf="addessInput.errors?.['required']">
+              {{ 'forms_errors.address.required' | translate }}
+            </mat-error>
+          </mat-form-field>-->
+
+
+      <label class="mt-3"> <b>{{ 'phone' | translate }}</b></label>
+
+      <div class="form-group">
+        <div class="input-group mb-1">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">+ ( {{ registerParams.phone_number.code }} )
+          </button>
+          <ul class="dropdown-menu">
+            <input type="text" placeholder="{{'search' | translate}}" id="myInput" (keyup)="filterFunction($event)"
+                   style="width: 100%;">
+            <li><a class="dropdown-item" href="javascript:void(0);" (click)="onCountryCodeSelected(country)"
+                   *ngFor="let country of filteredCountries">+ ( {{ country.phone_code }} ) {{ country.name }}</a>
+            </li>
+          </ul>
+          <input type="number" class="form-control border-secondary" name="phone" #phoneNumber="ngModel" required
+                 [(ngModel)]="registerParams.phone_number.number" (input)="onPhoneNumberChange($event)">
+        </div>
+      </div>
+      <div class="mb-4">
+        <mat-error *ngIf="phoneNumber.touched && phoneNumber.errors?.['required']">
+          {{ 'forms_errors.phone_number.required' | translate }}
+        </mat-error>
+        <mat-error class="mt-1 mb-1" *ngIf="!isValidPhoneNumber && showInvalidPhoneNumberAlert">
+          {{ 'view_alerts.phone_format' | translate }}
+        </mat-error>
+        <mat-error class="mt-1 mb-1" *ngIf="isPhoneNumberExists">
+          {{ 'view_alerts.invalid_phone' | translate }}
+        </mat-error>
+        <mat-error class="my-1" *ngIf="alertPhoneNumber">
+          {{ alertPhoneNumber }}
+        </mat-error>
+      </div>
+
+      <div class="auth__form-terms mt-2">
+        <p class="terms-text">
+          <input type="checkbox" id="cboxconsent" value="consent_checkbox" checked="true"
+                 (change)="onCheckedTerms($event)">
+          {{ 'view_alerts.terms1' | translate }}
+          <a href="javascript:void(0);"
+             (click)="openModal('modal-terms')">{{ 'view_alerts.terms2'| translate }}</a>{{ 'view_alerts.terms3' | translate }}
+        </p>
+      </div>
+      <button class="auth__continue btn-uteg-secondary"
+              [disabled]="!registerForm.valid || isInvalidConfirmEmail || !isValidPassword || generoSelected=='' ||
+            !fechaSelected || !isValidBirthdayDate || !consentCheck || alertPhoneNumber ||
+                              (!isValidPhoneNumber && showInvalidPhoneNumberAlert) ||
+                              (phoneNumber.touched && phoneNumber.errors?.['required'])"
+              (click)="onRegister()">{{ 'register' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+    <p
+      style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>
+
+<app-modal id="modal-terms">
+  <div class="card-body">
+    <div style="overflow-x: hidden;" [innerHTML]="termsContent"></div>
+  </div>
+  <button class="app-modal-btn" (click)="closeModal('modal-terms');">{{ 'close_btn' | translate }}</button>
+</app-modal>
+
+<app-modal id="modal-generic">
+  <div class="card-body">
+    <p>{{ genericMsg }}</p>
+  </div>
+  <button class="app-modal-btn" (click)="closeModal('modal-generic');">{{ 'close_btn' | translate }}</button>
+</app-modal>

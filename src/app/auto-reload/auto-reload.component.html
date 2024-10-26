@@ -1,0 +1,208 @@
+<div class="row">
+  <div class="col-xl-6 m-auto">
+    <div class="card card-default">
+      <div class="row">
+        <div class="col-2">
+          <button mat-mini-fab color="primary" style="border-radius: 0;"
+                  class="text-black no-bg" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        </div>
+        <div class="col-9 px-0 pt-2">
+          <p class="text-black">
+            {{ 'reload_view.auto_reload_msg_description' | translate }}
+          </p>
+        </div>
+      </div>
+      <div class="card-default" *ngIf="!showAddCardView">
+        <div class="card-header py-2">
+          <h2>{{'reload_view.auto' | translate}}</h2>
+        </div>
+
+        <div class="card-body">
+          <div *ngIf="showARView">
+            <h6 class="mt-4">{{ 'reload_view.amount' | translate }}</h6>
+            <div class="row mb-4">
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="reloadAmountSelected(200)" [class.active]="valueAR === 200">
+                  $200
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="reloadAmountSelected(400)" [class.active]="valueAR === 400">
+                  $400
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="reloadAmountSelected(600)" [class.active]="valueAR === 600">
+                  $600
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="reloadAmountSelected(800)" [class.active]="valueAR === 800">
+                  $800
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light w-100"
+                        (click)="enableRACustomValue()">
+                  {{ 'egift_view.other' | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="showAROtherView">
+            <div class="d-flex mb-4">
+              <label class="mt-4 me-2">$ </label>
+              <input type="number" class="form-control" [(ngModel)]="valueAR">
+              <button type="button" class="btn btn-outline-secondary ms-2 btn-pill" (click)="onARCustomValueNext()">{{ 'next' | translate }}</button>
+            </div>
+          </div>
+
+          <div class="d-flex mt-4" *ngIf="showSelectedAmount">
+            <p>{{ 'reload_view.amount' | translate }} $ {{ valueAR }}</p>
+
+            <div>
+              <button class="btn btn-link card__button-link ms-2" (click)="onBackToARView()">( {{ 'prepaid_view.addcard_btn3' | translate }} )</button>
+            </div>
+          </div>
+
+          <div *ngIf="showBBView">
+            <h6 class="mt-4">{{ 'reload_view.amount_auto_reload' | translate }}</h6>
+            <div class="row mb-4">
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="balanceBelowSelected(200)" [class.active]="valueBB === 200">
+                  $200
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="balanceBelowSelected(400)" [class.active]="valueBB === 400">
+                  $400
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="balanceBelowSelected(600)" [class.active]="valueBB === 600">
+                  $600
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light pe-4 w-100"
+                        (click)="balanceBelowSelected(800)" [class.active]="valueBB === 800">
+                  $800
+                </button>
+              </div>
+              <div class="col-6 col-md-6 col-lg-4 col-xl-4 px-2 pb-2">
+                <button type="button" class="btn btn-light w-100"
+                        (click)="enableBBCustomValue()">
+                  {{ 'egift_view.other' | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="showBBOtherView">
+            <div class="d-flex mb-4">
+              <label class="mt-4 me-2">$ </label>
+              <input type="number" class="form-control" [(ngModel)]="valueBB">
+              <button type="button" class="btn btn-outline-secondary ms-2 btn-pill" (click)="onBBCustomValueNext()">{{ 'next' | translate }}</button>
+            </div>
+          </div>
+
+          <div class="d-flex mt-4" *ngIf="showSelectedBalance">
+            <p>{{ 'reload_view.amount_auto_reload' | translate }} $ {{ valueBB }}</p>
+
+            <div>
+              <button class="btn btn-link card__button-link ms-2" (click)="onBackToBBView()">( {{ 'prepaid_view.addcard_btn3' | translate }} )</button>
+            </div>
+          </div>
+
+          <div *ngIf="showPaymentView">
+            <div>
+              <div class="list-group mt-4">
+                <button type="button" class="list-group-item list-group-item-action" [class.active]="selectedPayMethodIndex === i"
+                 (click)="onCcSelected(i,item)" *ngFor="let item of ccList; let i = index">{{ item.card }}</button>
+              </div>
+
+              <div class="form-group mt-4">
+                <button class="btn btn-outline-secondary" (click)="onShowAddCardView()">{{ 'cards_view.msg' | translate }}</button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="showSelectedCc">
+            <div class="row mt-4">
+              <p>{{ 'reload_view.card' | translate }} {{ cc_selected }}</p>
+              <button class="btn btn-link card__button-link d-flex justify-content-end justify-content-sm-start ms-2" (click)="onBackToPaymentView()">
+                ( {{ 'prepaid_view.addcard_btn3' | translate }} )
+              </button>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-dark mt-4"
+            [disabled]="valueAR==0 || valueBB==0 || cc_id==null || isLoading"
+            (click)="onAutoReload()">{{ 'send' | translate }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body pt-0" *ngIf="showAddCardView">
+        <h6 class="mt-4">{{ 'cards_view.msg' | translate }}</h6>
+
+        <form>
+          <div class="form-group mb-4">
+            <label for="cc_name">{{ 'egift_view.form.cc_name' | translate }}</label>
+            <input type="text" class="form-control" name="cc_name" [(ngModel)]="cc_name">
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="cc_number">{{ 'egift_view.form.cc_number' | translate }}</label>
+            <input type="number" class="form-control" name="cc_number" [(ngModel)]="cc_number">
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="cc_cvc">{{ 'egift_view.form.cc_cvc' | translate }}</label>
+                <input type="text" class="form-control" name="cc_cvc" [(ngModel)]="cc_cvc">
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <label>{{ 'egift_view.form.cc_exp' | translate }}</label>
+              <div class="d-flex">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="MM" name="cc_exp_mm" [(ngModel)]="cc_exp_mm">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="YYYY" name="cc_exp_yy" [(ngModel)]="cc_exp_yy">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="cc_postalcode">{{ 'egift_view.form.cc_postal_code' | translate }}</label>
+            <input type="text" class="form-control" name="cc_postalcode" [(ngModel)]="cc_postalcode">
+          </div>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-outline-secondary mb-2 btn-pill"
+            (click)="onSaveCC()" *ngIf="!showCardsList">{{ 'prepaid_view.addcard_btn1' | translate }}</button>
+            <button type="submit" class="btn btn-outline-secondary mb-2 ms-2 btn-pill"
+            (click)="onHideAddCardView()">{{ 'prepaid_view.addcard_btn2' | translate }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type ="ball-scale-multiple" [fullScreen]="true"><p style="color: white" >{{ 'loading' | translate }}</p></ngx-spinner>
+</div>

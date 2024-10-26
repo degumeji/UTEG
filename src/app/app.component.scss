@@ -1,0 +1,23 @@
+.language{
+  margin: 0 20px;
+  a {
+    cursor: pointer;
+    color: #3e404c;
+  }
+  .active-language {
+    font-weight: bold;
+    color: #1f1818 !important;
+  }
+}
+
+.app-admin-wrap {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content-center {
+  height: 100% !important;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

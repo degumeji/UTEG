@@ -1,0 +1,139 @@
+<div class="auth">
+  <div class="logo-row">
+    <div class="col-sm-12 logo-position">
+      <img src="{{environment.baseAssetsUrl}}assets/images/logo.webp" alt="uteg Logo"
+      />
+    </div>
+  </div>
+  <div class="auth__card" *ngIf="viewStep1">
+    <form [formGroup]="resetpassStep1Form" class="auth__login">
+      <h2 class="auth__title">{{ 'restorepass_ttl' | translate }}</h2>
+      <div class="auth__form mt-2">
+        <mat-form-field class="w-100">
+          <mat-label>{{ 'email' | translate }}</mat-label>
+          <input matInput formControlName="email" (input)="onEmailChange($event)"
+                 type="text" placeholder="" name="email" required>
+          <mat-error *ngIf="checkErrorStep1('email', 'required')">
+            {{ 'forms_errors.email.required' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep1('email', 'email')">
+            {{ 'forms_errors.email.email' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <mat-error class="my-1" *ngIf="showInvalidEmailAlert">
+            {{ 'view_alerts.invalid_email'  | translate }}
+          </mat-error>
+        </div>
+      </div>
+      <div id="forgot-password">
+        <div class="col-sm-12">
+          <a routerLink="/login" routerLinkActive="active">{{ 'resporepass_to_login' | translate }}</a>
+        </div>
+      </div>
+      <div class="auth-buttons" id="buttons">
+        <div class="col-sm-12">
+          <button class="auth__continue btn-uteg-secondary" (click)="onSendToEmail()"
+                  [disabled]="!isValidEmail || !isEmailExists">
+            {{ 'send' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep2">
+    <form [formGroup]="resetpassStep2Form" class="auth__login">
+      <h6 class="auth__title">{{ 'enter_code_msg' | translate }}</h6>
+      <h6 class="auth__title" style="line-break: anywhere;">{{ email }}</h6>
+
+      <div class="auth__form mb-2">
+        <mat-form-field class="w-100 mb-1">
+          <mat-label>{{ 'view_alerts.activate' | translate }}</mat-label>
+          <input matInput formControlName="token"
+                 type="text" placeholder="" name="token">
+          <mat-error *ngIf="checkErrorStep2('token', 'required')">
+            {{ 'forms_errors.token.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mb-1">
+          <mat-label>{{ 'password' | translate }}</mat-label>
+          <input matInput formControlName="password"
+                 [type]="hidePsw ? 'password' : 'text'" placeholder="" name="password">
+          <mat-icon class="cursor-pointer position-relative" matSuffix
+                    (click)="hidePsw = !hidePsw">
+            {{ hidePsw ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-error *ngIf="checkErrorStep2('password', 'required')">
+            {{ 'forms_errors.password.required' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep2('password', 'password_characters')">
+            {{ 'password_characters' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep2('password', 'password_lowercase')">
+            {{ 'password_lowercase' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep2('password', 'password_uppercase')">
+            {{ 'password_uppercase' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep2('password', 'password_number')">
+            {{ 'password_number' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep2('password', 'insecure_password')">
+            {{ 'insecure_password' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100 mb-1">
+          <mat-label>{{ 'confirm_password' | translate }}</mat-label>
+          <input matInput formControlName="confirmPassword"
+                 [type]="hidePswConfirm ? 'password' : 'text'" placeholder="" name="confirmPassword">
+          <mat-icon class="cursor-pointer position-relative" matSuffix
+                    (click)="hidePswConfirm = !hidePswConfirm">
+            {{ hidePswConfirm ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-error *ngIf="checkErrorStep2('confirmPassword', 'required')">
+            {{ 'forms_errors.confirmPassword.required' | translate }}
+          </mat-error>
+          <mat-error *ngIf="checkErrorStep2('confirmPassword', 'matching')">
+            {{ 'forms_errors.confirmPassword.matching' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="auth-buttons">
+        <div class="col-sm-12">
+          <a href="javascript:void(0);"
+             class="mdl-button mdl-js-button text-center text-uppercase"
+             (click)="onSendToEmail()">
+            {{ 'resend_email' | translate }}
+          </a>
+          <button class="auth__continue btn-uteg-secondary"
+                  (click)="onResetPass()">{{ 'restorepass_ttl' | translate }}
+          </button>
+          <button class="auth__continue btn-uteg-secondary"
+                  routerLink="/login">{{ 'login_btn' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="auth__card" *ngIf="viewStep3">
+    <form>
+      <h6 class="auth__title">{{ 'restorepass_msg2' | translate }} {{ email }}</h6>
+      <button class="auth__continue btn-uteg-secondary" routerLink="/login">{{ 'login_ttl' | translate }}
+      </button>
+    </form>
+  </div>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true"><p
+    style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+</div>
+
+<app-modal id="modal-generic">
+  <div class="card-body">
+    <p>{{ genericMsg }}</p>
+  </div>
+  <button class="app-modal-btn" (click)="closeModal('modal-generic');">{{ 'close_btn' | translate }}</button>
+</app-modal>

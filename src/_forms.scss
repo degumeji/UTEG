@@ -1,0 +1,45 @@
+.mdc-text-field {
+  padding: 0 !important;
+
+  &--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+  }
+}
+
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}
+
+.mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
+  border-color: #d50000 !important;
+  box-shadow: none !important;
+}
+
+.mat {
+  &-focused {
+    background-color: transparent !important;
+  }
+
+  &-mdc-form-field:hover .mat-mdc-form-field-focus-overlay {
+    opacity: 0 !important;
+  }
+
+  &-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s !important;
+}
+
+.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  @extend .montserrat-medium;
+  color: $secondary-color;
+}

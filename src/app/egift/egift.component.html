@@ -1,0 +1,276 @@
+<div class="row">
+  <div class="col-md-8 col-lg-7 m-auto">
+    <div class="card card-default">
+      <div class="col">
+        <button mat-mini-fab color="primary"
+                style="border-radius: 0;"
+                class="text-black no-bg"
+                (click)="goBack()"
+                [disabled]="viewStep1 || viewThanks"
+                *ngIf="!viewStep1 && !viewThanks">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+
+      <div class="card-body" *ngIf="viewStep1">
+        <div class="card-header px-0 py-2 mb-3" *ngIf="viewStep1">
+          <h2>{{ 'egift_view.form.gift_qty' | translate }}</h2>
+        </div>
+
+        <div class="mb-4 egift__options">
+          <button *ngFor="let button of amounts" type="button" class="btn btn-light"
+                  [ngClass]="{ 'egift-value__active-option': valueOption === button.text }"
+                  (click)="valueSelected(button.value)">
+            ${{ button.text }}
+          </button>
+          <button type="button" class="btn btn-light"
+                  [ngClass]="{ 'egift-value__active-option': valueOption === 'custom' }"
+                  (click)="enableCustomValue('custom')">
+            $ {{ 'egift_view.other' | translate }}
+          </button>
+        </div>
+
+        <div class="d-flex mb-4" *ngIf="customValue">
+          <mat-form-field class="w-100">
+            <mat-label></mat-label>
+            <input matInput type="number" [(ngModel)]="value">
+          </mat-form-field>
+        </div>
+
+        <div class="card-header px-0 py-3 mt-4 mb-2">
+          <h2>{{ 'egift_view.form.to' | translate }}</h2>
+        </div>
+
+        <form>
+          <mat-form-field class="w-100 mb-4">
+            <mat-label>{{ 'egift_view.form.recipient_name' | translate }}</mat-label>
+            <input matInput type="text" name="recipient_name" [(ngModel)]="recipient_name">
+          </mat-form-field>
+
+          <mat-form-field class="w-100 mb-4">
+            <mat-label>{{ 'egift_view.form.recipient_email' | translate }}</mat-label>
+            <input matInput type="email" name="recipient_email"
+                   (input)="onChangeRecipientEmail($event)" [(ngModel)]="recipient_email" required>
+          </mat-form-field>
+
+          <mat-form-field class="w-100">
+            <mat-label>{{ 'confirm_email' | translate }}</mat-label>
+            <input matInput type="email" name="recipient_confirm_email"
+                   (input)="onRecipientConfirmEmailChange($event)" [(ngModel)]="recipient_confirm_email" required>
+          </mat-form-field>
+          <div class="errors-container ps-0 mb-4">
+            <p class="text-error" *ngIf="showRecipientEmailAlert">
+              {{ 'validate_email' | translate }}
+            </p>
+          </div>
+
+          <mat-form-field class="w-100 mb-4">
+            <mat-label>{{ 'egift_view.form.message' | translate }}</mat-label>
+            <textarea matInput type="text" name="message" [maxlength]="maxLengthMessage"
+                      [(ngModel)]="message"></textarea>
+            <mat-hint>
+              <p>
+                {{ maxLengthMessage - (message || '').length }} {{ 'remaining_characters' | translate }}
+              </p>
+            </mat-hint>
+          </mat-form-field>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-uteg-secondary mb-2"
+                    [disabled]="value==0 || recipient_email=='' || recipient_confirm_email=='' || showRecipientEmailAlert"
+                    (click)="goStep2()">{{ 'next' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-body" *ngIf="viewStep2">
+        <div class="card-header px-0 py-2 mb-3">
+          <h2>{{ 'egift_view.form.from' | translate }}</h2>
+        </div>
+        <form>
+          <mat-form-field class="w-100 mb-4">
+            <mat-label>{{ 'egift_view.form.sender_name' | translate }}</mat-label>
+            <input matInput type="text" name="sender_name" [(ngModel)]="sender_name">
+          </mat-form-field>
+
+          <mat-form-field class="w-100 mb-4">
+            <mat-label>{{ 'egift_view.form.sender_email' | translate }}</mat-label>
+            <input matInput type="email" name="sender_email"
+                   (input)="onChangeSenderEmail($event)" [(ngModel)]="sender_email" required>
+          </mat-form-field>
+          <div class="errors-container ps-0 mb-4">
+            <p class="text-error" *ngIf="showSameMailAlert">
+              {{ 'egift_view.form.same_mail_alert'  | translate }}
+            </p>
+          </div>
+          <mat-form-field class="w-100">
+            <mat-label>{{ 'confirm_email' | translate }}</mat-label>
+            <input matInput type="email" name="sender_confirm_email"
+                   (input)="onSenderConfirmEmailChange($event)" [(ngModel)]="sender_confirm_email" required>
+          </mat-form-field>
+          <div class="errors-container ps-0 mb-4">
+            <p class="text-error" *ngIf="showSenderEmailAlert">
+              {{ 'validate_email'  | translate }}
+            </p>
+          </div>
+
+          <mat-form-field class="w-100 input-no-bg">
+            <mat-label><b>{{ 'egift_view.form.date' | translate }}</b></mat-label>
+            <mat-select [(value)]="dateTypeSelected">
+              <mat-option value="{{ 'today' }}">{{ 'egift_send_types.today' | translate }}</mat-option>
+              <mat-option value="{{ 'future' }}">{{ 'egift_send_types.future_date' | translate }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="w-100 input-no-bg" *ngIf="dateTypeSelected === 'future'">
+            <input matInput [ngModelOptions]="{standalone: true}" [ngxMatDatetimePicker]="picker" readonly
+                   [min]="minDate" [(ngModel)]="egiftDate">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+          </mat-form-field>
+
+          <div class="d-flex justify-content-end mt-6">
+            <button type="submit" class="btn btn-uteg-secondary mb-2"
+                    [disabled]="sender_email=='' || sender_confirm_email=='' || showSenderEmailAlert || showSameMailAlert"
+                    (click)="goStep3()">{{ 'next' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-body" *ngIf="viewStep3">
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-link card__button-link ms-2" (click)="goStep1()">
+            ( {{ 'prepaid_view.addcard_btn3' | translate }} )
+          </button>
+        </div>
+        <ng-container>
+          <img src="assets/images/gift-card.webp" class="d-block mx-auto w-auto mw-100"/>
+          <h2 class="mt-4 text-center mb-5 egift__amount">$ {{ value }}</h2>
+          <div class="mb-3">
+            <span class="text-black-50 me-3"><strong>{{ 'egift_view.form.to' | translate }}</strong></span>
+            <p class="egift__email">{{ recipient_email }}</p>
+          </div>
+          <div class="mb-3">
+            <span class="text-black-50 me-3"><strong>{{ 'egift_view.form.from' | translate }}</strong></span>
+            <p class="egift__email">{{ sender_email }}</p>
+          </div>
+          <div class="mb-3">
+            <span class="text-black-50 me-3"><strong>{{ 'egift_view.form.message' | translate }}</strong></span>
+            <p>{{ message }}</p>
+          </div>
+          <p *ngIf="dateTypeSelected === 'today'"
+             class="egift__date">{{ 'egift_send_types.' + dateTypeSelected | translate }}
+          </p>
+          <p *ngIf="dateTypeSelected === 'future'" class="egift__date">
+            {{ egiftDate | date:'MMM dd y \'at\' hh:mm a' }}
+          </p>
+        </ng-container>
+
+        <div *ngIf="showPaymentView && cookieService.get('accesstoken')">
+          <h6 class="mt-4 text-black">{{ 'egift_view.form.cc_details1' | translate }}</h6>
+
+          <div class="list-group mt-4" *ngIf="showCardsList">
+            <button type="button" class="list-group-item list-group-item-action"
+                    [class.active]="selectedPayMethodIndex === i"
+                    (click)="onCcSelected(i,item)" *ngFor="let item of ccList; let i = index">{{ item.card }}
+            </button>
+          </div>
+
+          <div class="form-group mt-4">
+            <button class="btn btn-link card__button-link"
+                    (click)="onShowAddCardView()">{{ 'cards_view.msg' | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="showSelectedCc">
+          <div class="row mt-4">
+            <p>{{ 'reload_view.card' | translate }} {{ cc_selected }}</p>
+            <button class="btn btn-link card__button-link d-flex justify-content-end justify-content-sm-start ms-2"
+                    (click)="onBackToPaymentView()">
+              ( {{ 'prepaid_view.addcard_btn3' | translate }} )
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="showAddCardView || !cookieService.get('accesstoken')">
+          <h6 class="mt-4 text-black">{{ 'egift_view.form.cc_details1' | translate }}</h6>
+
+          <form>
+            <div class="form-group mb-4">
+              <label class="text-black" for="cc_name">{{ 'egift_view.form.cc_name' | translate }}</label>
+              <input type="text" class="form-control" name="cc_name" [(ngModel)]="cc_name">
+            </div>
+
+            <div class="form-group mb-4">
+              <label class="text-black" for="cc_number">{{ 'egift_view.form.cc_number' | translate }}</label>
+              <input type="tel" class="form-control" name="cc_number" [(ngModel)]="cc_number"
+                     (input)="onlyNumbersInput($event, cc_number)">
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-sm-8">
+                <label class="text-black">{{ 'egift_view.form.cc_exp' | translate }}</label>
+                <div class="d-flex gap-2">
+                  <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="MM" name="cc_exp_mm" [(ngModel)]="cc_exp_mm"
+                           (input)="onlyNumbersInput($event, cc_exp_mm)" maxlength="2">
+                  </div>
+                  <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="YYYY" name="cc_exp_yy"
+                           [(ngModel)]="cc_exp_yy" (input)="onlyNumbersInput($event, cc_exp_yy)" maxlength="4">
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-4 mt-4 mt-sm-0">
+                <div class="form-group">
+                  <label class="text-black" for="cc_cvc">{{ 'egift_view.form.cc_cvc' | translate }}</label>
+                  <input type="tel" class="form-control" name="cc_cvc" [(ngModel)]="cc_cvc"
+                         (input)="onlyNumbersInput($event, cc_cvc)" maxlength="4">
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-6" *ngIf="cookieService.get('accesstoken')">
+              <button type="submit" class="btn btn-uteg-secondary me-2"
+                      (click)="onSaveCC()">{{ 'save' | translate }}
+              </button>
+              <button type="submit" class="btn btn-uteg-secondary"
+                      (click)="onHideAddCardView()">{{ 'prepaid_view.addcard_btn2' | translate }}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="d-flex justify-content-end mt-6" *ngIf="!showAddCardView">
+          <button type="submit" class="btn btn-uteg-secondary mb-2"
+                  [disabled]="cookieService.get('accesstoken') ? cc_selected === 0 : (!cc_name || !cc_number || !cc_cvc || !cc_exp_mm || !cc_exp_yy)"
+                  (click)="onSendEfigt()">
+            {{ 'send' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body align-items-center d-flex flex-column" *ngIf="viewThanks">
+        <img src="assets/images/gift-card.webp" class="w-100"/>
+        <h1 class="mt-5">{{ 'egift_view.success.thanks_title' | translate }}</h1>
+        <p>
+          {{ 'egift_view.success.msg1' | translate: {recipientName: recipient_name} }}
+          {{
+            dateTypeSelected === 'future' ?
+              (('egift_view.success.future' | translate) + ' ' + (egiftDate | date:'MMM dd y \'at\' hh:mm a')) :
+              ('egift_view.success.today' | translate)
+          }}
+        </p>
+
+        <button class="btn-uteg mt-5"
+                (click)="buyNewEgift()">{{ 'egift_view.success.buy_another' | translate }}
+        </button>
+      </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true">
+      <p style="color: white">{{ 'loading' | translate }}</p></ngx-spinner>
+  </div>
+</div>
